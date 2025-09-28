@@ -16,5 +16,14 @@ services:
     App\:
         resource: '../src/'
 
+    App\Identity\Infrastructure\Http\Controller\:
+        resource: '../src/Identity/Infrastructure/Http/Controller'
+        tags: [ 'controller.service_arguments' ]
+        public: true
+
+    App\Identity\Application\Service\:
+        resource: '../src/Identity/Application/Service/*Handler.php'
+        tags: [ { name: tactician.handler, typehints: true } ]
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
