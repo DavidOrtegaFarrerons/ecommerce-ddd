@@ -14,6 +14,7 @@ class UserMapper
         $r->password    = $user->password();
         $r->firstName   = $user->firstName();
         $r->lastName    = $user->lastName();
+        $r->roles       = $user->roles();
 
         return $r;
     }
@@ -26,6 +27,7 @@ class UserMapper
             $r->firstName,
             $r->lastName,
             $r->password,
+            $r->roles
         );
     }
 }

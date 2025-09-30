@@ -2,7 +2,7 @@
 
 namespace App\Identity\Application\Service;
 
-class SignUpUserCommand
+class RegisterUserCommand
 {
     private string $email;
     private string $firstName;

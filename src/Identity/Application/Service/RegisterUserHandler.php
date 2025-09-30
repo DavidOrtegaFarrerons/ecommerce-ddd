@@ -3,11 +3,12 @@
 namespace App\Identity\Application\Service;
 
 use App\Identity\Domain\Model\Email;
+use App\Identity\Domain\Model\Exception\UserAlreadyExistsException;
 use App\Identity\Domain\Model\PasswordHasher;
 use App\Identity\Domain\Model\User;
 use App\Identity\Domain\Model\UserRepository;
 
-readonly class SignUpUserHandler
+readonly class RegisterUserHandler
 {
 
     public function __construct(
@@ -17,7 +18,7 @@ readonly class SignUpUserHandler
     {
     }
 
-    public function handle(SignUpUserCommand $command): void
+    public function handle(RegisterUserCommand $command): void
     {
         $user = $this->userRepository->ofEmail(new Email($command->getEmail()));
         if ($user !== null) {

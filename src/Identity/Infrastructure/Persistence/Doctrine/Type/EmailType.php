@@ -21,7 +21,15 @@ class EmailType extends Type
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform) : string
     {
-        return $value->value();
+        if ($value instanceof Email) {
+            return $value->value();
+        }
+
+        if (is_string($value)) {
+            return $value;
+        }
+
+        throw new \InvalidArgumentException('Invalid value for EmailType: ' . gettype($value));
     }
 
     public function getName()

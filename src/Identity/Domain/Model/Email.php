@@ -2,6 +2,8 @@
 
 namespace App\Identity\Domain\Model;
 
+use App\Identity\Domain\Model\Exception\InvalidEmailException;
+
 class Email
 {
     private string $value;

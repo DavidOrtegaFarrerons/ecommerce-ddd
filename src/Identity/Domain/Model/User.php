@@ -2,6 +2,9 @@
 
 namespace App\Identity\Domain\Model;
 
+use App\Identity\Domain\Model\Exception\InvalidFirstNameException;
+use App\Identity\Domain\Model\Exception\InvalidLastNameException;
+
 class User
 {
     private UserId $id;
