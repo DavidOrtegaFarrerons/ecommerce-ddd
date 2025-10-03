@@ -21,13 +21,17 @@ readonly class RegisterUserController
         $data = json_decode($request->getContent(), true);
 
         if ($data === null) {
-            return new JsonResponse(['error' => 'Invalid JSON'], 400);
+            return new JsonResponse(['error' => 'No JSON Data was provided'], 400);
         }
 
-        $email     = $data['email']     ?? null;
-        $password  = $data['password']  ?? null;
-        $firstName = $data['firstName'] ?? null;
-        $lastName  = $data['lastName']  ?? null;
+        if (!isset($data['email'], $data['password'], $data['firstName'], $data['lastName']) {
+            return new JsonResponse(['error' => 'Missing required fields'], 400);
+        }
+
+        $email     = $data['email'];
+        $password  = $data['password'];
+        $firstName = $data['firstName'];
+        $lastName  = $data['lastName'];
 
         $command = new RegisterUserCommand($email, $firstName, $lastName, $password);
         $this->commandBus->handle($command);
