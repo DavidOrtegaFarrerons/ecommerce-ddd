@@ -24,7 +24,7 @@ readonly class RegisterUserController
             return new JsonResponse(['error' => 'No JSON Data was provided'], 400);
         }
 
-        if (!isset($data['email'], $data['password'], $data['firstName'], $data['lastName']) {
+        if (!isset($data['email'], $data['password'], $data['firstName'], $data['lastName'])) {
             return new JsonResponse(['error' => 'Missing required fields'], 400);
         }
 
