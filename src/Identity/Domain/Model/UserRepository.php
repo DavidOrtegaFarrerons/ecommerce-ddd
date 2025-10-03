@@ -5,8 +5,8 @@ namespace App\Identity\Domain\Model;
 interface UserRepository
 {
     public function nextIdentity() : UserId;
-    public function add(User $user);
-    public function remove(User $user);
-    public function ofId(UserId $userId);
-    public function ofEmail(Email $email);
+    public function add(User $user) : void;
+    public function remove(User $user) : void;
+    public function ofId(UserId $userId) : ?User;
+    public function ofEmail(Email $email) : ?User;
 }
