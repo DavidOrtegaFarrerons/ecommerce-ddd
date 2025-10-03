@@ -27,6 +27,13 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Identity/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Identity\Infrastructure\Persistence\Doctrine'
                 alias: Identity
+
+            Catalog:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Persistence/Doctrine'
+                prefix: 'App\Catalog\Infrastructure\Persistence\Doctrine'
+                alias: Identity
         controller_resolver:
             auto_mapping: false
 

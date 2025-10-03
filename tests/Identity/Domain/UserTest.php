@@ -12,20 +12,16 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    private function validUser(): User
+
+    public function testCreatesValidUser(): void
     {
-        return new User(
-            new UserId(),
+        $user = new User(
+            UserId::create(),
             new Email('user@example.com'),
             'John',
             'Smith',
             'hashed-password'
         );
-    }
-
-    public function testCreatesValidUser(): void
-    {
-        $user = $this->validUser();
 
         $this->assertInstanceOf(UserId::class, $user->id());
         $this->assertSame('user@example.com', (string) $user->email());
@@ -40,7 +36,7 @@ class UserTest extends TestCase
         $this->expectException(InvalidFirstNameException::class);
 
         new User(
-            new UserId(),
+            UserId::create(),
             new Email('user@example.com'),
             'Jo',  // too short
             'Smith',
@@ -53,7 +49,7 @@ class UserTest extends TestCase
         $this->expectException(InvalidLastNameException::class);
 
         new User(
-            new UserId(),
+            UserId::create(),
             new Email('user@example.com'),
             'John',
             'Li',  // too short
@@ -64,7 +60,7 @@ class UserTest extends TestCase
     public function testAllowsCustomRoles(): void
     {
         $user = new User(
-            new UserId(),
+            UserId::create(),
             new Email('user@example.com'),
             'John',
             'Smith',

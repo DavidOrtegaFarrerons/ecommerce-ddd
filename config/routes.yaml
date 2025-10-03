@@ -3,3 +3,9 @@ identity_controllers:
         path: ../src/Identity/Infrastructure/Http/Controller/
         namespace: App\Identity\Infrastructure\Http\Controller
     type: attribute
+
+catalog_controllers:
+    resource:
+        path: ../src/Catalog/Infrastructure/Http/Controller/
+        namespace: App\Catalog\Infrastructure\Http\Controller
+    type: attribute

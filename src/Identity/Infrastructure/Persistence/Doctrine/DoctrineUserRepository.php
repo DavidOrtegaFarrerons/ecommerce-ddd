@@ -16,7 +16,7 @@ readonly class DoctrineUserRepository implements UserRepository
 
     public function nextIdentity(): UserId
     {
-        return new UserId();
+        return UserId::create();
     }
 
     public function add(User $user): void
