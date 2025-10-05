@@ -63,9 +63,19 @@ class Product
         $this->setName($name);
     }
 
+    public function changeDescriptionTo(string $description): void
+    {
+        $this->setDescription($description);
+    }
+
     public function repriceTo(Money $price): void
     {
         $this->price = $price;
+    }
+
+    public function changeCategoryTo(CategoryId $categoryId): void
+    {
+        $this->categoryId = $categoryId;
     }
 
     public function publish() : void

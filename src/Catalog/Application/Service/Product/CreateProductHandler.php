@@ -2,8 +2,10 @@
 
 namespace App\Catalog\Application\Service\Product;
 
+use App\Catalog\Domain\Model\Product\ProductAlreadyExistsException;
 use App\Catalog\Domain\Model\Product\ProductFactory;
 use App\Catalog\Domain\Model\Product\ProductRepository;
+use App\Catalog\Domain\Model\Product\SKU;
 
 readonly class CreateProductHandler
 {
@@ -23,7 +25,7 @@ readonly class CreateProductHandler
             throw new ProductAlreadyExistsException("A product with the name '{$command->getName()}' already exists.");
         }
 
-        $product = $this->repository->ofSKU($command->getSKU());
+        $product = $this->repository->ofSKU(SKU::create($command->getSKU()));
 
         if ($product !== null) {
             throw new ProductAlreadyExistsException("A product with the SKU '{$command->getSKU()}' already exists.");

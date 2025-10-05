@@ -32,8 +32,8 @@ services:
         resource: '../src/Catalog/Application/Service/**/*Handler.php'
         tags: [ { name: tactician.handler, typehints: true } ]
 
-    App\Catalog\Domain\Model\CategoryRepository:
-        alias: App\Catalog\Infrastructure\Persistence\Doctrine\DoctrineCategoryRepository
+    App\Catalog\Domain\Model\Category\CategoryRepository:
+        alias: App\Catalog\Infrastructure\Persistence\Doctrine\Category\DoctrineCategoryRepository
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

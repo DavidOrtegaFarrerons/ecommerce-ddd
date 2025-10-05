@@ -4,7 +4,7 @@ namespace App\Catalog\Infrastructure\Persistence\Doctrine\Category;
 
 use App\Catalog\Domain\Model\Category\Category;
 use App\Catalog\Domain\Model\Category\CategoryId;
-use App\Catalog\Domain\Model\CategoryRepository;
+use App\Catalog\Domain\Model\Category\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineCategoryRepository implements CategoryRepository
@@ -38,7 +38,7 @@ class DoctrineCategoryRepository implements CategoryRepository
 
     public function ofId(CategoryId $categoryId): ?Category
     {
-        $record = $this->em->find(CategoryRecord::class, $categoryId);
+        $record = $this->em->find(CategoryRecord::class, $categoryId->id());
 
         return $record ? CategoryMapper::toDomain($record) : null;
     }

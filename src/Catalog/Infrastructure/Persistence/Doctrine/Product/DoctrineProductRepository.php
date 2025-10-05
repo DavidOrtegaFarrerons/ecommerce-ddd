@@ -5,6 +5,7 @@ namespace App\Catalog\Infrastructure\Persistence\Doctrine\Product;
 use App\Catalog\Domain\Model\Product\Product;
 use App\Catalog\Domain\Model\Product\ProductId;
 use App\Catalog\Domain\Model\Product\ProductRepository;
+use App\Catalog\Domain\Model\Product\SKU;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineProductRepository implements ProductRepository
@@ -23,7 +24,11 @@ class DoctrineProductRepository implements ProductRepository
     public function add(Product $product): void
     {
         $record = ProductMapper::toRecord($product);
-        $this->em->persist($record);
+
+        if (!$this->ofId($product->id())) { //TODO Check if there is a better way of doing this
+            $this->em->persist($record);
+        }
+
         $this->em->flush();
     }
 
@@ -48,9 +53,9 @@ class DoctrineProductRepository implements ProductRepository
         return $product ? ProductMapper::toDomain($product) : null;
     }
 
-    public function ofSKU(string $sku): ?Product
+    public function ofSKU(SKU $sku): ?Product
     {
-        $product = $this->em->getRepository(ProductRecord::class)->findOneBy(['sku' => $sku]);
+        $product = $this->em->getRepository(ProductRecord::class)->findOneBy(['sku' => $sku->value()]);
 
         return $product ? ProductMapper::toDomain($product) : null;
     }

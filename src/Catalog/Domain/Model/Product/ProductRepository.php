@@ -10,5 +10,5 @@ interface ProductRepository
     public function remove(Product $product) : void;
     public function ofId(ProductId $productId) : ?Product;
     public function ofName(string $name) : ?Product;
-    public function ofSKU(string $sku) : ?Product;
+    public function ofSKU(SKU $sku) : ?Product;
 }

@@ -36,6 +36,11 @@ class SKU
         return $this->value === $sku->value;
     }
 
+    public function value() : string
+    {
+        return $this->value;
+    }
+
     public function __toString() : string
     {
         return $this->value;

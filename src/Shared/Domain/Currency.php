@@ -21,6 +21,11 @@ class Currency
         return $this->isoCode === $currency->isoCode;
     }
 
+    public function isoCode(): string
+    {
+        return $this->isoCode;
+    }
+
     public function __toString(): string
     {
         return $this->isoCode;
