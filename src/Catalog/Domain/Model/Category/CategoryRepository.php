@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Catalog\Domain;
+namespace App\Catalog\Domain\Model\Category;
 
 interface CategoryRepository
 {

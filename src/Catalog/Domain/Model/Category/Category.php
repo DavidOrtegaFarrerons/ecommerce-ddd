@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Catalog\Domain;
+namespace App\Catalog\Domain\Model\Category;
 
 class Category
 {
@@ -14,7 +14,7 @@ class Category
     public function __construct(CategoryId $categoryId, string $name)
     {
         $this->categoryId = $categoryId;
-        $this->name = $name;
+        $this->setName($name);
     }
 
     private function setName($name) : void

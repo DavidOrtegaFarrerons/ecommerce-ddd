@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Catalog\Infrastructure\Persistence\Doctrine;
+namespace App\Catalog\Infrastructure\Persistence\Doctrine\Category;
 
 use Doctrine\ORM\Mapping as ORM;
 

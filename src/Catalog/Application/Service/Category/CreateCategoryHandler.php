@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Catalog\Application\Service;
+namespace App\Catalog\Application\Service\Category;
 
-use App\Catalog\Domain\CategoryFactory;
-use App\Catalog\Domain\CategoryRepository;
+use App\Catalog\Domain\Model\Category\CategoryAlreadyExistsException;
+use App\Catalog\Domain\Model\Category\CategoryFactory;
+use App\Catalog\Domain\Model\Category\CategoryRepository;
 
 class CreateCategoryHandler
 {

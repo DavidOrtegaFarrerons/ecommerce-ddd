@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Catalog\Application\Service;
+namespace App\Catalog\Application\Service\Category;
 
 class CreateCategoryCommand
 {

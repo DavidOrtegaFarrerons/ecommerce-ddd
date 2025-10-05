@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Catalog\Infrastructure\Persistence\Doctrine;
+namespace App\Catalog\Infrastructure\Persistence\Doctrine\Category;
 
-use App\Catalog\Domain\Category;
-use App\Catalog\Domain\CategoryId;
+use App\Catalog\Domain\Model\Category\Category;
+use App\Catalog\Domain\Model\Category\CategoryId;
 
 class CategoryMapper
 {

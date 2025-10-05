@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Catalog\Infrastructure\Persistence\Doctrine;
+namespace App\Catalog\Infrastructure\Persistence\Doctrine\Category;
 
-use App\Catalog\Domain\Category;
-use App\Catalog\Domain\CategoryId;
-use App\Catalog\Domain\CategoryRepository;
+use App\Catalog\Domain\Model\Category\Category;
+use App\Catalog\Domain\Model\Category\CategoryId;
+use App\Catalog\Domain\Model\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineCategoryRepository implements CategoryRepository

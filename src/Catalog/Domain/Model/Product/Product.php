@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Catalog\Domain;
+namespace App\Catalog\Domain\Model\Product;
 
+use App\Catalog\Domain\Model\Category\CategoryId;
 use App\Shared\Domain\Money;
 
 class Product
@@ -11,8 +12,9 @@ class Product
     private string $name;
     private string $description;
     private Money $price;
-    private bool $published;
+
     private CategoryId $categoryId;
+    private bool $published;
 
     /**
      * @param ProductId $id
@@ -21,8 +23,9 @@ class Product
      * @param string $description
      * @param Money $price
      * @param CategoryId $categoryId
+     * @param bool $published
      */
-    public function __construct(ProductId $id, SKU $sku, string $name, string $description, Money $price, CategoryId $categoryId)
+    public function __construct(ProductId $id, SKU $sku, string $name, string $description, Money $price, CategoryId $categoryId, bool $published = false)
     {
         $this->id = $id;
         $this->sku = $sku;
@@ -30,7 +33,7 @@ class Product
         $this->setDescription($description);
         $this->price = $price;
         $this->categoryId = $categoryId;
-        $this->published = false;
+        $this->published = $published;
     }
 
     private function setName(string $name): void
@@ -38,7 +41,7 @@ class Product
         $name = trim($name);
 
         if (strlen($name) < 4) {
-            throw new InvalidNameException('Product name is too short, minimum is 4 characters');
+            throw new InvalidNameException('ProductRecord name is too short, minimum is 4 characters');
         }
 
         $this->name = $name;
@@ -49,7 +52,7 @@ class Product
         $description = trim($description);
 
         if (strlen($description) < 4) {
-            throw new InvalidDescriptionException('Product description is too short, minimum is 4 characters');
+            throw new InvalidDescriptionException('ProductRecord description is too short, minimum is 4 characters');
         }
 
         $this->description = $description;
@@ -68,9 +71,44 @@ class Product
     public function publish() : void
     {
         if ($this->price->amount() === 0) {
-            throw new InvalidPriceException("For a Product to be published, the price must be higher than 0");
+            throw new InvalidPriceException("For a ProductRecord to be published, the price must be higher than 0");
         }
 
         $this->published = true;
+    }
+
+    public function id(): ProductId
+    {
+        return $this->id;
+    }
+
+    public function sku(): SKU
+    {
+        return $this->sku;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function description(): string
+    {
+        return $this->description;
+    }
+
+    public function price(): Money
+    {
+        return $this->price;
+    }
+
+    public function categoryId(): CategoryId
+    {
+        return $this->categoryId;
+    }
+
+    public function published(): bool
+    {
+        return $this->published;
     }
 }

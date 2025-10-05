@@ -21,7 +21,7 @@ class Money
         $this->amount = $amount;
     }
 
-    public function create(int $amount, Currency $currenty): Money
+    public static function create(int $amount, Currency $currenty): Money
     {
         return new Money($amount, $currenty);
     }

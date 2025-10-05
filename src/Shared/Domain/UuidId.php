@@ -2,7 +2,6 @@
 
 namespace App\Shared\Domain;
 
-use App\Catalog\Domain\CategoryId;
 use Symfony\Component\Uid\Uuid;
 
 abstract class UuidId
