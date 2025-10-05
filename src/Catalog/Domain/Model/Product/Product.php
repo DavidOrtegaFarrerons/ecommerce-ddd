@@ -81,10 +81,15 @@ class Product
     public function publish() : void
     {
         if ($this->price->amount() === 0) {
-            throw new InvalidPriceException("For a ProductRecord to be published, the price must be higher than 0");
+            throw new InvalidPriceException("For a Product to be published, the price must be higher than 0");
         }
 
         $this->published = true;
+    }
+
+    public function unpublish() : void
+    {
+        $this->published = false;
     }
 
     public function id(): ProductId
