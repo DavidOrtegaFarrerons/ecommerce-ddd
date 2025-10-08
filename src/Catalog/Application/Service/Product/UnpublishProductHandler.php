@@ -2,6 +2,7 @@
 
 namespace App\Catalog\Application\Service\Product;
 
+use App\Catalog\Domain\Model\Product\ProductDoesNotExistException;
 use App\Catalog\Domain\Model\Product\ProductRepository;
 use App\Catalog\Domain\Model\Product\SKU;
 
@@ -14,7 +15,7 @@ class UnpublishProductHandler
     {
     }
 
-    public function handle(PublishProductCommand $command) : void
+    public function handle(UnpublishProductCommand $command) : void
     {
         $product = $this->productRepository->ofSKU(SKU::create($command->getSku()));
 

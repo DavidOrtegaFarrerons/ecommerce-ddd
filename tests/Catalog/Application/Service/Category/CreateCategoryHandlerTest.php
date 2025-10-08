@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Catalog\Application;
+namespace App\Tests\Catalog\Application\Service\Category;
 
 use App\Catalog\Application\Service\Category\CreateCategoryCommand;
 use App\Catalog\Application\Service\Category\CreateCategoryHandler;

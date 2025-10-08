@@ -2,6 +2,7 @@
 
 namespace App\Catalog\Application\Service\Product;
 
+use App\Catalog\Domain\Model\Product\ProductDoesNotExistException;
 use App\Catalog\Domain\Model\Product\ProductRepository;
 use App\Catalog\Domain\Model\Product\SKU;
 

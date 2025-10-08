@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Tests\Identity\Domain;
+namespace App\Tests\Catalog\Domain\Model\Category;
 
-use App\Identity\Domain\Model\UserId;
+use App\Catalog\Domain\Model\Category\CategoryId;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Uid\Uuid;
 
-class UserIdTest extends TestCase
+class CategoryIdTest extends TestCase
 {
     public function testComparesUserIdsCorrectly(): void
     {
         $uuid = Uuid::v4()->toString();
-        $userId1 = UserId::create($uuid);
-        $userId2 = UserId::create($uuid);
-        $userId3 = UserId::create();
+        $userId1 = CategoryId::create($uuid);
+        $userId2 = CategoryId::create($uuid);
+        $userId3 = CategoryId::create();
 
         $this->assertTrue($userId1->equalsTo($userId2));
         $this->assertFalse($userId1->equalsTo($userId3));
