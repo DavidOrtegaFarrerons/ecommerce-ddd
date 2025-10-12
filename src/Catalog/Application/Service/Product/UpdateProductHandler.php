@@ -5,6 +5,7 @@ namespace App\Catalog\Application\Service\Product;
 use App\Catalog\Domain\Model\Category\CategoryDoesNotExistException;
 use App\Catalog\Domain\Model\Category\CategoryId;
 use App\Catalog\Domain\Model\Category\CategoryRepository;
+use App\Catalog\Domain\Model\Product\ProductDoesNotExistException;
 use App\Catalog\Domain\Model\Product\ProductRepository;
 use App\Catalog\Domain\Model\Product\SKU;
 use App\Shared\Domain\Currency;

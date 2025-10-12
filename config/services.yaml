@@ -35,5 +35,8 @@ services:
     App\Catalog\Domain\Model\Category\CategoryRepository:
         alias: App\Catalog\Infrastructure\Persistence\Doctrine\Category\DoctrineCategoryRepository
 
+    App\Catalog\Domain\Model\Product\ProductRepository:
+        alias: App\Catalog\Infrastructure\Persistence\Doctrine\Product\DoctrineProductRepository
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

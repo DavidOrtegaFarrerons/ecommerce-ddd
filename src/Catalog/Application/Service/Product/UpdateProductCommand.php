@@ -19,7 +19,7 @@ class UpdateProductCommand
      * @param string|null $priceCurrency
      * @param string|null $categoryId
      */
-    public function __construct(string $sku, ?string $name, ?string $description, ?int $priceAmount, ?string $priceCurrency, ?string $categoryId)
+    public function __construct(string $sku, ?string $name = null, ?string $description = null, ?int $priceAmount = null, ?string $priceCurrency = null, ?string $categoryId = null)
     {
         $this->sku = $sku;
         $this->name = $name;
