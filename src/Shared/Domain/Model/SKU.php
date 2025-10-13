@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Catalog\Domain\Model\Product;
+namespace App\Shared\Domain\Model;
 
 class SKU
 {

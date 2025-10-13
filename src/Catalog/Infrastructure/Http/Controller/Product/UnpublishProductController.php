@@ -16,7 +16,7 @@ class UnpublishProductController extends AbstractController
     {
     }
 
-    #[Route('products/{sku}/unpublish', name: 'publish_product', methods: ['PATCH'])]
+    #[Route('products/{sku}/unpublish', name: 'unpublish_product', methods: ['PATCH'])]
     #[IsGranted('ROLE_ADMIN')]
     public function publish(string $sku) : JsonResponse
     {

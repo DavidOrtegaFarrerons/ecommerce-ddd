@@ -5,15 +5,14 @@ namespace App\Tests\Catalog\Application\Service\Product;
 use App\Catalog\Application\Service\Product\UnpublishProductCommand;
 use App\Catalog\Application\Service\Product\UnpublishProductHandler;
 use App\Catalog\Domain\Model\Category\CategoryId;
-use App\Catalog\Domain\Model\Product\InvalidPriceException;
 use App\Catalog\Domain\Model\Product\Product;
 use App\Catalog\Domain\Model\Product\ProductDoesNotExistException;
 use App\Catalog\Domain\Model\Product\ProductId;
 use App\Catalog\Domain\Model\Product\ProductRepository;
-use App\Catalog\Domain\Model\Product\SKU;
 use App\Catalog\Infrastructure\Persistence\InMemory\Product\InMemoryProductRepository;
-use App\Shared\Domain\Currency;
-use App\Shared\Domain\Money;
+use App\Shared\Domain\Model\Currency;
+use App\Shared\Domain\Model\Money;
+use App\Shared\Domain\Model\SKU;
 use PHPUnit\Framework\TestCase;
 
 class UnpublishProductHandlerTest extends TestCase
@@ -47,7 +46,7 @@ class UnpublishProductHandlerTest extends TestCase
 
         $this->handler->handle(new UnpublishProductCommand('cool-sku'));
 
-        $product = $this->repository->ofSKU(SKU::create('cool-sku'));
+        $product = $this->repository->ofSku(SKU::create('cool-sku'));
 
         $this->assertFalse($product->published());
     }
@@ -69,12 +68,12 @@ class UnpublishProductHandlerTest extends TestCase
 
         $this->repository->add($product);
 
-        $product = $this->repository->ofSKU(SKU::create('cool-sku'));
+        $product = $this->repository->ofSku(SKU::create('cool-sku'));
         $this->assertFalse($product->published());
 
         $this->handler->handle(new UnpublishProductCommand('cool-sku'));
 
-        $product = $this->repository->ofSKU(SKU::create('cool-sku'));
+        $product = $this->repository->ofSku(SKU::create('cool-sku'));
         $this->assertFalse($product->published());
     }
 

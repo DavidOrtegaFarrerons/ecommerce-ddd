@@ -7,9 +7,9 @@ use App\Catalog\Domain\Model\Category\CategoryId;
 use App\Catalog\Domain\Model\Category\CategoryRepository;
 use App\Catalog\Domain\Model\Product\ProductDoesNotExistException;
 use App\Catalog\Domain\Model\Product\ProductRepository;
-use App\Catalog\Domain\Model\Product\SKU;
-use App\Shared\Domain\Currency;
-use App\Shared\Domain\Money;
+use App\Shared\Domain\Model\Currency;
+use App\Shared\Domain\Model\Money;
+use App\Shared\Domain\Model\SKU;
 
 readonly class UpdateProductHandler
 {
@@ -23,7 +23,7 @@ readonly class UpdateProductHandler
 
     public function handle(UpdateProductCommand $command) : void
     {
-        $product = $this->productRepository->ofSKU(SKU::create($command->getSku()));
+        $product = $this->productRepository->ofSku(SKU::create($command->getSku()));
 
         if ($product === null) {
             throw new ProductDoesNotExistException("The product with sku {$command->getSku()} doesn't exist");

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Shared;
+namespace App\Tests\Shared\Domain\Model;
 
 use App\Identity\Domain\Model\UserId;
 use PHPUnit\Framework\TestCase;

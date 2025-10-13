@@ -3,8 +3,9 @@
 namespace App\Catalog\Domain\Model\Product;
 
 use App\Catalog\Domain\Model\Category\CategoryId;
-use App\Shared\Domain\Currency;
-use App\Shared\Domain\Money;
+use App\Shared\Domain\Model\Currency;
+use App\Shared\Domain\Model\Money;
+use App\Shared\Domain\Model\SKU;
 
 class ProductFactory
 {

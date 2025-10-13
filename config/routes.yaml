@@ -9,3 +9,9 @@ catalog_controllers:
         path: ../src/Catalog/Infrastructure/Http/Controller/
         namespace: App\Catalog\Infrastructure\Http\Controller
     type: attribute
+
+inventory_controllers:
+    resource:
+        path: ../src/Inventory/Infrastructure/Http/Controller/
+        namespace: App\Inventory\Infrastructure\Http\Controller
+    type: attribute

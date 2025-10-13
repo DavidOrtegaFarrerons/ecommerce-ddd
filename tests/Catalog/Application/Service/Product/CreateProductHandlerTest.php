@@ -5,15 +5,11 @@ namespace App\Tests\Catalog\Application\Service\Product;
 use App\Catalog\Application\Service\Product\CreateProductCommand;
 use App\Catalog\Application\Service\Product\CreateProductHandler;
 use App\Catalog\Domain\Model\Category\CategoryId;
-use App\Catalog\Domain\Model\Product\Product;
 use App\Catalog\Domain\Model\Product\ProductAlreadyExistsException;
 use App\Catalog\Domain\Model\Product\ProductFactory;
-use App\Catalog\Domain\Model\Product\ProductId;
 use App\Catalog\Domain\Model\Product\ProductRepository;
-use App\Catalog\Domain\Model\Product\SKU;
 use App\Catalog\Infrastructure\Persistence\InMemory\Product\InMemoryProductRepository;
-use App\Shared\Domain\Currency;
-use App\Shared\Domain\Money;
+use App\Shared\Domain\Model\SKU;
 use PHPUnit\Framework\TestCase;
 
 class CreateProductHandlerTest extends TestCase

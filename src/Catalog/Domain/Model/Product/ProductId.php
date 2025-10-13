@@ -2,7 +2,7 @@
 
 namespace App\Catalog\Domain\Model\Product;
 
-use App\Shared\Domain\UuidId;
+use App\Shared\Domain\Model\UuidId;
 
 class ProductId extends UuidId {
     public function equalsTo(ProductId $productId): bool

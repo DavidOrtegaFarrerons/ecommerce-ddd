@@ -8,9 +8,9 @@ use App\Catalog\Domain\Model\Product\InvalidNameException;
 use App\Catalog\Domain\Model\Product\InvalidPriceException;
 use App\Catalog\Domain\Model\Product\Product;
 use App\Catalog\Domain\Model\Product\ProductId;
-use App\Catalog\Domain\Model\Product\SKU;
-use App\Shared\Domain\Currency;
-use App\Shared\Domain\Money;
+use App\Shared\Domain\Model\Currency;
+use App\Shared\Domain\Model\Money;
+use App\Shared\Domain\Model\SKU;
 use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase

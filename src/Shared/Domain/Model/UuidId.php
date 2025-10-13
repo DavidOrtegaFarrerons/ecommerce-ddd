@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Domain;
+namespace App\Shared\Domain\Model;
 
 use Symfony\Component\Uid\Uuid;
 

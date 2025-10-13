@@ -16,7 +16,7 @@ class PublishProductController extends AbstractController
     {
     }
 
-    #[Route('products/{sku}/publish', name: 'publish_product', methods: ['PATCH'])]
+    #[Route('/products/{sku}/publish', name: 'publish_product', methods: ['PATCH'])]
     #[IsGranted('ROLE_ADMIN')]
     public function publish(string $sku) : JsonResponse
     {

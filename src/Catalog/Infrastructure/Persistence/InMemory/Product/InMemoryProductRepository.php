@@ -5,7 +5,7 @@ namespace App\Catalog\Infrastructure\Persistence\InMemory\Product;
 use App\Catalog\Domain\Model\Product\Product;
 use App\Catalog\Domain\Model\Product\ProductId;
 use App\Catalog\Domain\Model\Product\ProductRepository;
-use App\Catalog\Domain\Model\Product\SKU;
+use App\Shared\Domain\Model\SKU;
 
 class InMemoryProductRepository implements ProductRepository
 {
@@ -49,7 +49,7 @@ class InMemoryProductRepository implements ProductRepository
         return null;
     }
 
-    public function ofSKU(SKU $sku): ?Product
+    public function ofSku(SKU $sku): ?Product
     {
         foreach ($this->products as $product) {
             if ($product->sku()->equalsTo($sku)) {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Catalog\Domain\Model\Category;
+namespace App\Tests\Shared\Domain\Model;
 
-use App\Catalog\Domain\Model\Product\InvalidSKUException;
-use App\Catalog\Domain\Model\Product\SKU;
+use App\Shared\Domain\Model\InvalidSKUException;
+use App\Shared\Domain\Model\SKU;
 use PHPUnit\Framework\TestCase;
 
 class SKUTest extends TestCase
