@@ -2,7 +2,7 @@
 
 namespace App\Inventory\Application\Service;
 
-class UpdateStockItemCommand
+class UpdateStockItemQuantityCommand
 {
     private string $sku;
     private int $quantity;

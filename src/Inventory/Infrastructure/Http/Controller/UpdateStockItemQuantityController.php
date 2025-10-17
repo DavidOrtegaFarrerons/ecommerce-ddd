@@ -2,15 +2,16 @@
 
 namespace App\Inventory\Infrastructure\Http\Controller;
 
-use App\Inventory\Application\Service\UpdateStockItemCommand;
+use App\Inventory\Application\Service\UpdateStockItemQuantityCommand;
 use App\Inventory\Domain\Model\StockItemNotFoundException;
 use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-class UpdateStockItemController extends AbstractController
+class UpdateStockItemQuantityController extends AbstractController
 {
 
     public function __construct(private CommandBus $commandBus)
@@ -18,6 +19,7 @@ class UpdateStockItemController extends AbstractController
     }
 
     #[Route('inventory/{sku}', methods: ['PATCH'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(string $sku, Request $request) : JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -33,7 +35,7 @@ class UpdateStockItemController extends AbstractController
 
         try {
             $this->commandBus->handle(
-                new UpdateStockItemCommand($sku, $data['quantity'])
+                new UpdateStockItemQuantityCommand($sku, $data['quantity'])
             );
         } catch (StockItemNotFoundException $exception) {
             return $this->json([

@@ -2,7 +2,7 @@
 
 namespace App\Inventory\Domain\Model;
 
-class InvalidQuantityException
+class InvalidQuantityException extends \Exception
 {
 
 }

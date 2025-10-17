@@ -2,7 +2,7 @@
 
 namespace App\Catalog\Application\Service\Product;
 
-use App\Catalog\Application\Transformer\Product\ProductViewAssembler;
+use App\Catalog\Application\Transformer\Product\ProductViewTransformer;
 use App\Catalog\Application\View\ProductView;
 use App\Catalog\Domain\Model\Category\CategoryDoesNotExistException;
 use App\Catalog\Domain\Model\Category\CategoryRepository;
@@ -14,9 +14,9 @@ class ViewProductHandler
 {
 
     public function __construct(
-        private ProductRepository  $productRepository,
-        private CategoryRepository $categoryRepository,
-        private ProductViewAssembler $assembler,
+        private ProductRepository      $productRepository,
+        private CategoryRepository     $categoryRepository,
+        private ProductViewTransformer $assembler,
     )
     {
     }

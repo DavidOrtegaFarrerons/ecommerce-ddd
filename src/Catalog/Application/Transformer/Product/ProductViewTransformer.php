@@ -5,7 +5,7 @@ namespace App\Catalog\Application\Transformer\Product;
 use App\Catalog\Application\View\ProductView;
 use App\Catalog\Domain\Model\Product\Product;
 
-class ProductViewAssembler
+class ProductViewTransformer
 {
     public function assembleFrom(Product $product, string $categoryName) : ProductView
     {

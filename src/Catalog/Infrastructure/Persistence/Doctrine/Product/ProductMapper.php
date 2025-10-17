@@ -9,13 +9,24 @@ use App\Shared\Domain\Model\Currency;
 use App\Shared\Domain\Model\Money;
 use App\Shared\Domain\Model\SKU;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityNotFoundException;
+use Doctrine\ORM\Exception\ORMException;
 
 class ProductMapper
 {
-    public static function toRecord(Product $product) : ProductRecord
+
+    public function __construct(private EntityManagerInterface $em)
     {
-        $r = new ProductRecord();
-        $r->id = $product->id()->id();
+    }
+
+    public function toRecord(Product $product) : ProductRecord
+    {
+        $r = $this->em->find(ProductRecord::class, $product->id()->id());
+        if ($r === null) {
+            $r = new ProductRecord();
+            $r->id = $product->id()->id();
+        }
+
         $r->sku = $product->sku()->value();
         $r->name = $product->name();
         $r->description = $product->description();
@@ -27,7 +38,7 @@ class ProductMapper
         return $r;
     }
 
-    public static function toDomain(ProductRecord $productRecord): Product
+    public function toDomain(ProductRecord $productRecord): Product
     {
         return new Product(
             ProductId::create($productRecord->id),

@@ -11,7 +11,10 @@ class DoctrineCategoryRepository implements CategoryRepository
 {
 
 
-    public function __construct(private EntityManagerInterface $em)
+    public function __construct(
+        private EntityManagerInterface $em,
+        private CategoryMapper $mapper,
+    )
     {
     }
 
@@ -22,7 +25,7 @@ class DoctrineCategoryRepository implements CategoryRepository
 
     public function add(Category $category): void
     {
-        $record = CategoryMapper::toRecord($category);
+        $record = $this->mapper->toRecord($category);
 
         $this->em->persist($record);
         $this->em->flush();
@@ -31,7 +34,7 @@ class DoctrineCategoryRepository implements CategoryRepository
 
     public function remove(Category $category): void
     {
-        $record = CategoryMapper::toRecord($category);
+        $record = $this->mapper->toRecord($category);
 
         $this->em->remove($record);
     }
@@ -40,7 +43,7 @@ class DoctrineCategoryRepository implements CategoryRepository
     {
         $record = $this->em->find(CategoryRecord::class, $categoryId->id());
 
-        return $record ? CategoryMapper::toDomain($record) : null;
+        return $record ? $this->mapper->toDomain($record) : null;
     }
 
     public function ofName(string $name): ?Category
@@ -49,6 +52,6 @@ class DoctrineCategoryRepository implements CategoryRepository
             ->findOneBy(['name' => $name])
         ;
 
-        return $record ? CategoryMapper::toDomain($record) : null;
+        return $record ? $this->mapper->toDomain($record) : null;
     }
 }

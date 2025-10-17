@@ -4,9 +4,10 @@ namespace App\Inventory\Application\Service;
 
 use App\Inventory\Domain\Model\StockItemNotFoundException;
 use App\Inventory\Domain\Model\StockItemRepository;
+use App\Inventory\Domain\Model\StockQuantity;
 use App\Shared\Domain\Model\SKU;
 
-class UpdateStockItemHandler
+class UpdateStockItemQuantityHandler
 {
 
     public function __construct(
@@ -15,7 +16,7 @@ class UpdateStockItemHandler
     {
     }
 
-    public function handle(UpdateStockItemCommand $command) : void
+    public function handle(UpdateStockItemQuantityCommand $command) : void
     {
         $sku = SKU::create($command->getSku());
         $stockItem = $this->repository->ofSku($sku);
@@ -24,7 +25,7 @@ class UpdateStockItemHandler
             throw new StockItemNotFoundException("No stockItem found with sku {$sku->value()}");
         }
 
-        $stockItem->adjustStockBy($command->getQuantity());
+        $stockItem->setStockTo(StockQuantity::create($command->getQuantity()));
 
         $this->repository->add($stockItem);
     }

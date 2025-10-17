@@ -13,5 +13,5 @@ interface ProductRepository
     public function ofId(ProductId $productId) : ?Product;
     public function ofName(string $name) : ?Product;
     public function ofSku(SKU $sku) : ?Product;
-    //public function findByFilters(SKU $sku, string $name, int $price, string $categoryName) : array;
+    public function findByFilters(SKU $sku, string $name, int $price, string $categoryName) : array;
 }

@@ -10,7 +10,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 readonly class DoctrineUserRepository implements UserRepository
 {
-    public function __construct(private EntityManagerInterface $em)
+    public function __construct(
+        private EntityManagerInterface $em,
+        private UserMapper $mapper
+    )
     {
     }
 
@@ -21,7 +24,7 @@ readonly class DoctrineUserRepository implements UserRepository
 
     public function add(User $user): void
     {
-        $record = UserMapper::toRecord($user);
+        $record = $this->mapper->toRecord($user);
         $this->em->persist($record);
         $this->em->flush();
     }
@@ -34,7 +37,7 @@ readonly class DoctrineUserRepository implements UserRepository
     public function ofId(UserId $userId) : ?User
     {
         $record = $this->em->find(UserRecord::class, $userId);
-        return $record ? UserMapper::toDomain($record) : null;
+        return $record ? $this->mapper->toDomain($record) : null;
     }
 
     public function ofEmail(Email $email) : ?User
@@ -44,6 +47,6 @@ readonly class DoctrineUserRepository implements UserRepository
             ->findOneBy(['email' => $email])
         ;
 
-        return $record ? UserMapper::toDomain($record) : null;
+        return $record ? $this->mapper->toDomain($record) : null;
     }
 }

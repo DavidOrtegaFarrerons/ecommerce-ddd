@@ -6,20 +6,30 @@ use App\Inventory\Domain\Model\StockItem;
 use App\Inventory\Domain\Model\StockItemId;
 use App\Inventory\Domain\Model\StockQuantity;
 use App\Shared\Domain\Model\SKU;
+use Doctrine\ORM\EntityManagerInterface;
 
 class StockItemMapper
 {
-    public static function toRecord(StockItem $stockItem) : StockItemRecord
+
+    public function __construct(private EntityManagerInterface $em)
     {
-        $r = new StockItemRecord();
-        $r->id = $stockItem->id()->id();
+    }
+
+    public function toRecord(StockItem $stockItem) : StockItemRecord
+    {
+        $r = $this->em->find(StockItemRecord::class, $stockItem->id()->id());
+        if ($r === null) {
+            $r = new StockItemRecord();
+            $r->id = $stockItem->id()->id();
+        }
+
         $r->sku = $stockItem->sku()->value();
         $r->quantity = $stockItem->quantity()->value();
 
         return $r;
     }
 
-    public static function toDomain(StockItemRecord $stockItemRecord): StockItem
+    public function toDomain(StockItemRecord $stockItemRecord): StockItem
     {
         return new StockItem(
             StockItemId::create($stockItemRecord->id),

@@ -4,12 +4,12 @@ namespace App\Catalog\Application\View;
 
 readonly class ProductView
 {
-    public string $sku;
-    public string $name;
-    public string $description;
-    public string $categoryName;
-    public int $price;
-    public string $currency;
+    private string $sku;
+    private string $name;
+    private string $description;
+    private string $categoryName;
+    private int $price;
+    private string $currency;
 
     /**
      * @param string $sku
@@ -27,5 +27,35 @@ readonly class ProductView
         $this->categoryName = $categoryName;
         $this->price = $price;
         $this->currency = $currency;
+    }
+
+    public function getSku(): string
+    {
+        return $this->sku;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getCategoryName(): string
+    {
+        return $this->categoryName;
+    }
+
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
     }
 }

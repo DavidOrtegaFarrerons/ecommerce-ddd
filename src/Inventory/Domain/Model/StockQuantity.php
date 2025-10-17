@@ -22,31 +22,6 @@ class StockQuantity
         return new StockQuantity($value);
     }
 
-    public function adjustBy(int $amount): self {
-        if ($amount < 0) {
-            return $this->decreaseBy(abs($amount));
-        }
-
-        if ($amount > 0) {
-            return $this->increaseBy($amount);
-        }
-
-        return $this;
-    }
-
-    public function increaseBy(int $amount): self
-    {
-        return self::create($this->value + $amount);
-    }
-
-    public function decreaseBy(int $amount): self
-    {
-        if ($amount > $this->value) {
-            throw new NoStockException("There is no sufficient stock for the given amount");
-        }
-        return self::create($this->value - $amount);
-    }
-
     public function value(): int
     {
         return $this->value;

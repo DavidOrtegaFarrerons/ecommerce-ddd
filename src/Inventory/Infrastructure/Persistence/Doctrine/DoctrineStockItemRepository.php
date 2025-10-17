@@ -12,7 +12,10 @@ class DoctrineStockItemRepository implements StockItemRepository
 {
 
 
-    public function __construct(private EntityManagerInterface $em)
+    public function __construct(
+        private EntityManagerInterface $em,
+        private StockItemMapper $mapper
+    )
     {
     }
 
@@ -23,7 +26,7 @@ class DoctrineStockItemRepository implements StockItemRepository
 
     public function add(StockItem $stockItem)
     {
-        $record = StockItemMapper::toRecord($stockItem);
+        $record = $this->mapper->toRecord($stockItem);
 
         $this->em->persist($record);
         $this->em->flush();
@@ -31,7 +34,7 @@ class DoctrineStockItemRepository implements StockItemRepository
 
     public function remove(StockItem $stockItem)
     {
-        $record = StockItemMapper::toRecord($stockItem);
+        $record = $this->mapper->toRecord($stockItem);
 
         $this->em->remove($record);
         $this->em->flush();
@@ -41,13 +44,13 @@ class DoctrineStockItemRepository implements StockItemRepository
     {
         $record = $this->em->find(StockItemRecord::class, $stockItemId);
 
-        return $record !== null ? StockItemMapper::toDomain($record) : null;
+        return $record !== null ? $this->mapper->toDomain($record) : null;
     }
 
     public function ofSku(SKU $sku): ?StockItem
     {
         $record = $this->em->getRepository(StockItemRecord::class)->findOneBy(['sku' => $sku->value()]);
 
-        return $record !== null ? StockItemMapper::toDomain($record) : null;
+        return $record !== null ? $this->mapper->toDomain($record) : null;
     }
 }

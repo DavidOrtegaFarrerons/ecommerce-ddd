@@ -28,12 +28,13 @@ class DoctrineProductRepository implements ProductRepository
     {
         $record = $this->mapper->toRecord($product);
 
+        $this->em->persist($record);
         $this->em->flush();
     }
 
     public function remove(Product $product): void
     {
-        $record = ProductMapper::toRecord($product);
+        $record = $this->mapper->toRecord($product);
         $this->em->remove($record);
         $this->em->flush();
     }
@@ -42,20 +43,25 @@ class DoctrineProductRepository implements ProductRepository
     {
         $product = $this->em->find(ProductRecord::class, $productId);
 
-        return $product ? ProductMapper::toDomain($product) : null;
+        return $product ? $this->mapper->toDomain($product) : null;
     }
 
     public function ofName(string $name): ?Product
     {
         $product = $this->em->getRepository(ProductRecord::class)->findOneBy(['name' => $name]);
 
-        return $product ? ProductMapper::toDomain($product) : null;
+        return $product ? $this->mapper->toDomain($product) : null;
     }
 
     public function ofSku(SKU $sku): ?Product
     {
         $product = $this->em->getRepository(ProductRecord::class)->findOneBy(['sku' => $sku->value()]);
 
-        return $product ? ProductMapper::toDomain($product) : null;
+        return $product ? $this->mapper->toDomain($product) : null;
+    }
+
+    public function findByFilters(SKU $sku, string $name, int $price, string $categoryName): array
+    {
+        return [];
     }
 }

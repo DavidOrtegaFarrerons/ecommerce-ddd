@@ -4,7 +4,7 @@ namespace App\Tests\Catalog\Application\Service\Product;
 
 use App\Catalog\Application\Service\Product\ViewProductCommand;
 use App\Catalog\Application\Service\Product\ViewProductHandler;
-use App\Catalog\Application\Transformer\Product\ProductViewAssembler;
+use App\Catalog\Application\Transformer\Product\ProductViewTransformer;
 use App\Catalog\Domain\Model\Category\Category;
 use App\Catalog\Domain\Model\Category\CategoryDoesNotExistException;
 use App\Catalog\Domain\Model\Category\CategoryId;
@@ -32,7 +32,7 @@ final class ViewProductHandlerTest extends TestCase
         $this->handler = new ViewProductHandler(
             $this->productRepository,
             $this->categoryRepository,
-            new ProductViewAssembler()
+            new ProductViewTransformer()
         );
     }
 
@@ -58,12 +58,12 @@ final class ViewProductHandlerTest extends TestCase
 
         $view = $this->handler->handle($command);
 
-        self::assertSame('ABC123', $view->sku);
-        self::assertSame('name', $view->name);
-        self::assertSame('description', $view->description);
-        self::assertSame('100', $view->price);
-        self::assertSame('EUR', $view->currency);
-        self::assertSame($category->name(), $view->categoryName);
+        self::assertSame('ABC123', $view->getSku());
+        self::assertSame('name', $view->getName());
+        self::assertSame('description', $view->getDescription());
+        self::assertSame(100, $view->getPrice());
+        self::assertSame('EUR', $view->getCurrency());
+        self::assertSame($category->name(), $view->getCategoryName());
     }
 
     public function testProductMustExistToBeViewed(): void

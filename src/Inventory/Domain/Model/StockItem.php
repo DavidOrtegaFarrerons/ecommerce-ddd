@@ -22,19 +22,9 @@ class StockItem
         $this->quantity = $quantity;
     }
 
-    public function adjustStockBy(int $amount) : void
+    public function setStockTo(StockQuantity $stock) : void
     {
-        $this->quantity = $this->quantity->adjustBy($amount);
-    }
-
-    public function increaseStockBy(int $amount) : void
-    {
-        $this->quantity = $this->quantity->increaseBy($amount);
-    }
-
-    public function decreaseStockBy(int $amount) : void
-    {
-        $this->quantity = $this->quantity->decreaseBy($amount);
+        $this->quantity = $stock;
     }
 
     public function id() : StockItemId

@@ -59,4 +59,9 @@ class InMemoryProductRepository implements ProductRepository
 
         return null;
     }
+
+    public function findByFilters(SKU $sku, string $name, int $price, string $categoryName): array
+    {
+        return [];
+    }
 }
