@@ -41,7 +41,7 @@ final class UpdateProductHandlerTest extends TestCase
         $this->categoryRepository->add($oldCategory);
         $this->categoryRepository->add($newCategory);
 
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('ABC123'),
             'old-name',
@@ -88,7 +88,7 @@ final class UpdateProductHandlerTest extends TestCase
         $category = new Category(CategoryId::create(), 'existing-category');
         $this->categoryRepository->add($category);
 
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('MISSING-CAT'),
             'name',
@@ -114,7 +114,7 @@ final class UpdateProductHandlerTest extends TestCase
         $category = new Category(CategoryId::create(), 'category');
         $this->categoryRepository->add($category);
 
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('PARTIAL'),
             'old-name',

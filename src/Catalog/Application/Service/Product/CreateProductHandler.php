@@ -6,13 +6,15 @@ use App\Catalog\Domain\Model\Product\ProductAlreadyExistsException;
 use App\Catalog\Domain\Model\Product\ProductFactory;
 use App\Catalog\Domain\Model\Product\ProductRepository;
 use App\Shared\Domain\Model\SKU;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 readonly class CreateProductHandler
 {
 
     public function __construct(
         private ProductRepository $repository,
-        private ProductFactory    $factory
+        private ProductFactory    $factory,
+        private EventDispatcherInterface $eventDispatcher
     )
     {
     }
@@ -42,5 +44,9 @@ readonly class CreateProductHandler
         );
 
         $this->repository->add($product);
+
+        foreach ($product->pullDomainEvents() as $event) {
+            $this->eventDispatcher->dispatch($event);
+        }
     }
 }

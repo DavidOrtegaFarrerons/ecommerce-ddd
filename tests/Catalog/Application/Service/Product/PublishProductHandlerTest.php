@@ -28,7 +28,7 @@ class PublishProductHandlerTest extends TestCase
     public function testProductCanBePublished(): void
     {
         $categoryId = CategoryId::create();
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('cool-sku'),
             'name',
@@ -54,7 +54,7 @@ class PublishProductHandlerTest extends TestCase
     public function testProductWithInvalidPriceAmountCanNotBePublished(): void
     {
         $categoryId = CategoryId::create();
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('cool-sku'),
             'name',

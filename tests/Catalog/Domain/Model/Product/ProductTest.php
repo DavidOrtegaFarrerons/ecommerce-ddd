@@ -18,7 +18,7 @@ class ProductTest extends TestCase
 
     private function validProduct(?Money $price = null): Product
     {
-        return new Product(
+        return Product::create(
             ProductId::create(),
             SKU::create("sample-sku"),
             'valid name',
@@ -31,7 +31,7 @@ class ProductTest extends TestCase
     {
         $this->expectException(InvalidNameException::class);
 
-        new Product(
+        Product::create(
             ProductId::create(),
             SKU::create("sample-sku"),
             'abc',
@@ -48,7 +48,7 @@ class ProductTest extends TestCase
     {
         $this->expectException(InvalidDescriptionException::class);
 
-        new Product(
+        Product::create(
             ProductId::create(),
             SKU::create("sample-sku"),
             'cool name',
@@ -63,7 +63,7 @@ class ProductTest extends TestCase
 
     public function testFourCharactersNameIsAllowed()
     {
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create("sample-sku"),
             'name',
@@ -80,7 +80,7 @@ class ProductTest extends TestCase
 
     public function testFourCharactersDescriptionIsAllowed()
     {
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create("sample-sku"),
             'cool name',

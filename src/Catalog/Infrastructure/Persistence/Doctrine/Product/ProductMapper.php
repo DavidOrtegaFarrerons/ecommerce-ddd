@@ -9,8 +9,6 @@ use App\Shared\Domain\Model\Currency;
 use App\Shared\Domain\Model\Money;
 use App\Shared\Domain\Model\SKU;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityNotFoundException;
-use Doctrine\ORM\Exception\ORMException;
 
 class ProductMapper
 {
@@ -40,7 +38,7 @@ class ProductMapper
 
     public function toDomain(ProductRecord $productRecord): Product
     {
-        return new Product(
+        return Product::reconstitute(
             ProductId::create($productRecord->id),
             SKU::create($productRecord->sku),
             $productRecord->name,

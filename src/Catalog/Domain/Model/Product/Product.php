@@ -3,10 +3,12 @@
 namespace App\Catalog\Domain\Model\Product;
 
 use App\Catalog\Domain\Model\Category\CategoryId;
+use App\Catalog\Domain\Event\ProductCreated;
+use App\Shared\Domain\Event\DomainEvent\AggregateRoot;
 use App\Shared\Domain\Model\Money;
 use App\Shared\Domain\Model\SKU;
 
-class Product
+class Product extends AggregateRoot
 {
     private ProductId $id;
     private SKU $sku;
@@ -26,7 +28,7 @@ class Product
      * @param CategoryId $categoryId
      * @param bool $published
      */
-    public function __construct(ProductId $id, SKU $sku, string $name, string $description, Money $price, CategoryId $categoryId, bool $published = false)
+    private function __construct(ProductId $id, SKU $sku, string $name, string $description, Money $price, CategoryId $categoryId, bool $published = false)
     {
         $this->id = $id;
         $this->sku = $sku;
@@ -35,6 +37,18 @@ class Product
         $this->price = $price;
         $this->categoryId = $categoryId;
         $this->published = $published;
+    }
+
+    public static function create(ProductId $id, SKU $sku, string $name, string $description, Money $price, CategoryId $categoryId, bool $published = false): Product
+    {
+        $self = new Product($id, $sku, $name, $description, $price, $categoryId, $published);
+        $self->record(new ProductCreated($self->sku()));
+        return $self;
+    }
+
+    public static function reconstitute(ProductId $id, SKU $sku, string $name, string $description, Money $price, CategoryId $categoryId, bool $published = false): Product
+    {
+        return Product::create($id, $sku, $name, $description, $price, $categoryId, $published);
     }
 
     private function setName(string $name): void

@@ -41,7 +41,7 @@ final class ViewProductHandlerTest extends TestCase
         $category = new Category(CategoryId::create(), 'category');
         $this->categoryRepository->add($category);
 
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('ABC123'),
             'name',
@@ -76,7 +76,7 @@ final class ViewProductHandlerTest extends TestCase
 
     public function testProductMustHaveExistingCategoryToBeViewed(): void
     {
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('missing-category'),
             'name',

@@ -19,7 +19,7 @@ class ProductFactory
         string $categoryId
     ) : Product
     {
-        return new Product(
+        return Product::create(
             $id,
             SKU::create($sku),
             $name,

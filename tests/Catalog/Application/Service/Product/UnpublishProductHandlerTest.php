@@ -29,7 +29,7 @@ class UnpublishProductHandlerTest extends TestCase
     public function testProductCanBeUnpublished(): void
     {
         $categoryId = CategoryId::create();
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('cool-sku'),
             'name',
@@ -54,7 +54,7 @@ class UnpublishProductHandlerTest extends TestCase
     public function testUnpublishedProductStaysUnpublished(): void
     {
         $categoryId = CategoryId::create();
-        $product = new Product(
+        $product = Product::create(
             ProductId::create(),
             SKU::create('cool-sku'),
             'name',
