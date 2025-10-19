@@ -16,7 +16,7 @@ class Money
     private function setAmount(int $amount): void
     {
         if ($amount < 0) {
-            throw new InvalidMoneyAmountException("Amount must be greater than 0");
+            throw new InvalidMoneyAmountException('Amount must be greater than 0');
         }
         $this->amount = $amount;
     }
@@ -28,8 +28,8 @@ class Money
 
     public function equalsTo(Money $money): bool
     {
-        return $this->amount === $money->amount &&
-            $this->currency->equalsTo($money->currency)
+        return $this->amount === $money->amount
+            && $this->currency->equalsTo($money->currency)
         ;
     }
 

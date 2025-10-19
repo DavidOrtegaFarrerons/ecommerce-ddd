@@ -10,17 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 readonly class RegisterUserController
 {
-
     public function __construct(private CommandBus $commandBus)
     {
     }
 
     #[Route('/auth/register', name: 'register', methods: ['POST'])]
-    public function __invoke(Request $request) : JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
-        if ($data === null) {
+        if (null === $data) {
             return new JsonResponse(['error' => 'No JSON Data was provided'], 400);
         }
 
@@ -28,10 +27,10 @@ readonly class RegisterUserController
             return new JsonResponse(['error' => 'Missing required fields'], 400);
         }
 
-        $email     = $data['email'];
-        $password  = $data['password'];
+        $email = $data['email'];
+        $password = $data['password'];
         $firstName = $data['firstName'];
-        $lastName  = $data['lastName'];
+        $lastName = $data['lastName'];
 
         $command = new RegisterUserCommand($email, $firstName, $lastName, $password);
         $this->commandBus->handle($command);

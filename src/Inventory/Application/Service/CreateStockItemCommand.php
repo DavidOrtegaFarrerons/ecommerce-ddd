@@ -6,9 +6,6 @@ class CreateStockItemCommand
 {
     private string $sku;
 
-    /**
-     * @param string $sku
-     */
     public function __construct(string $sku)
     {
         $this->sku = $sku;
@@ -18,5 +15,4 @@ class CreateStockItemCommand
     {
         return $this->sku;
     }
-
 }

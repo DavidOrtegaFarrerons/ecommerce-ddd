@@ -10,15 +10,14 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class StockItemMapper
 {
-
     public function __construct(private EntityManagerInterface $em)
     {
     }
 
-    public function toRecord(StockItem $stockItem) : StockItemRecord
+    public function toRecord(StockItem $stockItem): StockItemRecord
     {
         $r = $this->em->find(StockItemRecord::class, $stockItem->id()->id());
-        if ($r === null) {
+        if (null === $r) {
             $r = new StockItemRecord();
             $r->id = $stockItem->id()->id();
         }

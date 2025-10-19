@@ -10,26 +10,24 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 readonly class CreateProductHandler
 {
-
     public function __construct(
         private ProductRepository $repository,
-        private ProductFactory    $factory,
-        private EventDispatcherInterface $eventDispatcher
-    )
-    {
+        private ProductFactory $factory,
+        private EventDispatcherInterface $eventDispatcher,
+    ) {
     }
 
-    public function handle(CreateProductCommand $command) : void
+    public function handle(CreateProductCommand $command): void
     {
         $product = $this->repository->ofName($command->getName());
 
-        if ($product !== null) {
+        if (null !== $product) {
             throw new ProductAlreadyExistsException("A product with the name '{$command->getName()}' already exists.");
         }
 
         $product = $this->repository->ofSku(SKU::create($command->getSKU()));
 
-        if ($product !== null) {
+        if (null !== $product) {
             throw new ProductAlreadyExistsException("A product with the SKU '{$command->getSKU()}' already exists.");
         }
 

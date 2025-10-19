@@ -12,6 +12,7 @@ class InMemoryCategoryRepository implements CategoryRepository
      * @var array<string, Category>
      */
     private array $categories = [];
+
     public function nextIdentity(): CategoryId
     {
         return CategoryId::create();

@@ -10,13 +10,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineProductRepository implements ProductRepository
 {
-
-
     public function __construct(
         private EntityManagerInterface $em,
         private ProductMapper $mapper,
-    )
-    {
+    ) {
     }
 
     public function nextIdentity(): ProductId

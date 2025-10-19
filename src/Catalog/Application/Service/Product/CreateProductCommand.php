@@ -11,14 +11,6 @@ class CreateProductCommand
     private string $priceCurrency;
     private string $categoryId;
 
-    /**
-     * @param string $sku
-     * @param string $name
-     * @param string $description
-     * @param int $priceAmount
-     * @param string $priceCurrency
-     * @param string $categoryId
-     */
     public function __construct(string $sku, string $name, string $description, int $priceAmount, string $priceCurrency, string $categoryId)
     {
         $this->sku = $sku;

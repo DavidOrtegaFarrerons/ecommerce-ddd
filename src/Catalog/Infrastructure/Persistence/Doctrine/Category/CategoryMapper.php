@@ -8,15 +8,14 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryMapper
 {
-
     public function __construct(private EntityManagerInterface $em)
     {
     }
 
-    public function toRecord(Category $category) : CategoryRecord
+    public function toRecord(Category $category): CategoryRecord
     {
         $r = $this->em->find(CategoryRecord::class, $category->id()->id());
-        if ($r === null) {
+        if (null === $r) {
             $r = new CategoryRecord();
             $r->id = $category->id()->id();
         }
@@ -26,7 +25,7 @@ class CategoryMapper
         return $r;
     }
 
-    public function toDomain(CategoryRecord $r) : Category
+    public function toDomain(CategoryRecord $r): Category
     {
         return new Category(
             CategoryId::create($r->id),

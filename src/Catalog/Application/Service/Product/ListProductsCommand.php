@@ -9,12 +9,6 @@ class ListProductsCommand
     private ?int $price;
     private ?string $categoryName;
 
-    /**
-     * @param string|null $sku
-     * @param string|null $name
-     * @param int|null $price
-     * @param string|null $categoryName
-     */
     public function __construct(?string $sku = null, ?string $name = null, ?int $price = null, ?string $categoryName = null)
     {
         $this->sku = $sku;

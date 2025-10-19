@@ -10,11 +10,6 @@ class StockItem
     private SKU $sku;
     private StockQuantity $quantity;
 
-    /**
-     * @param StockItemId $id
-     * @param SKU $sku
-     * @param StockQuantity $quantity
-     */
     public function __construct(StockItemId $id, SKU $sku, StockQuantity $quantity)
     {
         $this->id = $id;
@@ -22,22 +17,22 @@ class StockItem
         $this->quantity = $quantity;
     }
 
-    public function setStockTo(StockQuantity $stock) : void
+    public function setStockTo(StockQuantity $stock): void
     {
         $this->quantity = $stock;
     }
 
-    public function id() : StockItemId
+    public function id(): StockItemId
     {
         return $this->id;
     }
 
-    public function sku() : SKU
+    public function sku(): SKU
     {
         return $this->sku;
     }
 
-    public function quantity() : StockQuantity
+    public function quantity(): StockQuantity
     {
         return $this->quantity;
     }

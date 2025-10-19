@@ -7,10 +7,6 @@ class UpdateStockItemQuantityCommand
     private string $sku;
     private int $quantity;
 
-    /**
-     * @param string $sku
-     * @param int $quantity
-     */
     public function __construct(string $sku, int $quantity)
     {
         $this->sku = $sku;

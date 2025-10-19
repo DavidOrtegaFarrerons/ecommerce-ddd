@@ -11,11 +11,10 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 class LoginUserController extends AbstractController
 {
-
     #[Route('/auth/login', name: 'login', methods: ['POST'])]
-    public function __invoke(#[CurrentUser] ?UserRecord $userRecord) : JsonResponse
+    public function __invoke(#[CurrentUser] ?UserRecord $userRecord): JsonResponse
     {
-        if ($userRecord === null) {
+        if (null === $userRecord) {
             return $this->json([
                 'message' => 'missing credentials',
             ], Response::HTTP_UNAUTHORIZED);

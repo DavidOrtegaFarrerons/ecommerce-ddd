@@ -13,23 +13,20 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UpdateStockItemQuantityController extends AbstractController
 {
-
     public function __construct(private CommandBus $commandBus)
     {
     }
 
     #[Route('inventory/{sku}', methods: ['PATCH'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function update(string $sku, Request $request) : JsonResponse
+    public function update(string $sku, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-
-
 
         if (!isset($data['quantity'])) {
             return $this->json([
                 'success' => false,
-                'message' => 'A quantity is needed to update the StockItem'
+                'message' => 'A quantity is needed to update the StockItem',
             ]);
         }
 
@@ -43,7 +40,6 @@ class UpdateStockItemQuantityController extends AbstractController
                 'message' => $exception->getMessage(),
             ]);
         }
-
 
         return $this->json([], 204);
     }

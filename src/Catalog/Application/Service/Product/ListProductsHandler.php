@@ -6,6 +6,5 @@ class ListProductsHandler
 {
     public function handle(ListProductsCommand $command): array
     {
-
     }
 }

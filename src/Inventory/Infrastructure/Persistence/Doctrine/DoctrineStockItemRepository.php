@@ -10,13 +10,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineStockItemRepository implements StockItemRepository
 {
-
-
     public function __construct(
         private EntityManagerInterface $em,
-        private StockItemMapper $mapper
-    )
-    {
+        private StockItemMapper $mapper,
+    ) {
     }
 
     public function nextIdentity(): StockItemId
@@ -44,13 +41,13 @@ class DoctrineStockItemRepository implements StockItemRepository
     {
         $record = $this->em->find(StockItemRecord::class, $stockItemId);
 
-        return $record !== null ? $this->mapper->toDomain($record) : null;
+        return null !== $record ? $this->mapper->toDomain($record) : null;
     }
 
     public function ofSku(SKU $sku): ?StockItem
     {
         $record = $this->em->getRepository(StockItemRecord::class)->findOneBy(['sku' => $sku->value()]);
 
-        return $record !== null ? $this->mapper->toDomain($record) : null;
+        return null !== $record ? $this->mapper->toDomain($record) : null;
     }
 }

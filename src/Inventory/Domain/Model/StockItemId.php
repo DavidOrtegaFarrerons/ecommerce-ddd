@@ -6,7 +6,7 @@ use App\Shared\Domain\Model\UuidId;
 
 class StockItemId extends UuidId
 {
-    public function equalsTo(StockItemId $stockItemId) : bool
+    public function equalsTo(StockItemId $stockItemId): bool
     {
         return $this->id() === $stockItemId->id();
     }

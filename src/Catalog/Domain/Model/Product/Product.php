@@ -2,8 +2,8 @@
 
 namespace App\Catalog\Domain\Model\Product;
 
-use App\Catalog\Domain\Model\Category\CategoryId;
 use App\Catalog\Domain\Event\ProductCreated;
+use App\Catalog\Domain\Model\Category\CategoryId;
 use App\Shared\Domain\Event\DomainEvent\AggregateRoot;
 use App\Shared\Domain\Model\Money;
 use App\Shared\Domain\Model\SKU;
@@ -19,15 +19,6 @@ class Product extends AggregateRoot
     private CategoryId $categoryId;
     private bool $published;
 
-    /**
-     * @param ProductId $id
-     * @param SKU $sku
-     * @param string $name
-     * @param string $description
-     * @param Money $price
-     * @param CategoryId $categoryId
-     * @param bool $published
-     */
     private function __construct(ProductId $id, SKU $sku, string $name, string $description, Money $price, CategoryId $categoryId, bool $published = false)
     {
         $this->id = $id;
@@ -43,6 +34,7 @@ class Product extends AggregateRoot
     {
         $self = new Product($id, $sku, $name, $description, $price, $categoryId, $published);
         $self->record(new ProductCreated($self->sku()));
+
         return $self;
     }
 
@@ -93,16 +85,16 @@ class Product extends AggregateRoot
         $this->categoryId = $categoryId;
     }
 
-    public function publish() : void
+    public function publish(): void
     {
-        if ($this->price->amount() === 0) {
-            throw new InvalidPriceException("For a Product to be published, the price must be higher than 0");
+        if (0 === $this->price->amount()) {
+            throw new InvalidPriceException('For a Product to be published, the price must be higher than 0');
         }
 
         $this->published = true;
     }
 
-    public function unpublish() : void
+    public function unpublish(): void
     {
         $this->published = false;
     }

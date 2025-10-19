@@ -8,7 +8,6 @@ use Doctrine\DBAL\Types\Type;
 
 class EmailType extends Type
 {
-
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return $platform->getStringTypeDeclarationSQL($column);
@@ -19,7 +18,7 @@ class EmailType extends Type
         return new Email($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform) : string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         if ($value instanceof Email) {
             return $value->value();
@@ -29,7 +28,7 @@ class EmailType extends Type
             return $value;
         }
 
-        throw new \InvalidArgumentException('Invalid value for EmailType: ' . gettype($value));
+        throw new \InvalidArgumentException('Invalid value for EmailType: '.gettype($value));
     }
 
     public function getName()

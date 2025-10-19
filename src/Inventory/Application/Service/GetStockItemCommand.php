@@ -6,9 +6,6 @@ class GetStockItemCommand
 {
     private string $sku;
 
-    /**
-     * @param string $sku
-     */
     public function __construct(string $sku)
     {
         $this->sku = $sku;

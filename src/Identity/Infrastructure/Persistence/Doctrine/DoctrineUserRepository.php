@@ -12,9 +12,8 @@ readonly class DoctrineUserRepository implements UserRepository
 {
     public function __construct(
         private EntityManagerInterface $em,
-        private UserMapper $mapper
-    )
-    {
+        private UserMapper $mapper,
+    ) {
     }
 
     public function nextIdentity(): UserId
@@ -34,13 +33,14 @@ readonly class DoctrineUserRepository implements UserRepository
         $this->em->remove($user);
     }
 
-    public function ofId(UserId $userId) : ?User
+    public function ofId(UserId $userId): ?User
     {
         $record = $this->em->find(UserRecord::class, $userId);
+
         return $record ? $this->mapper->toDomain($record) : null;
     }
 
-    public function ofEmail(Email $email) : ?User
+    public function ofEmail(Email $email): ?User
     {
         $record = $this->em
             ->getRepository(UserRecord::class)

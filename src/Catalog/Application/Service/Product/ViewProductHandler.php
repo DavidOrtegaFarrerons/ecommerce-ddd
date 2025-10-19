@@ -12,26 +12,24 @@ use App\Shared\Domain\Model\SKU;
 
 class ViewProductHandler
 {
-
     public function __construct(
-        private ProductRepository      $productRepository,
-        private CategoryRepository     $categoryRepository,
+        private ProductRepository $productRepository,
+        private CategoryRepository $categoryRepository,
         private ProductViewTransformer $assembler,
-    )
-    {
+    ) {
     }
 
-    public function handle(ViewProductCommand $command) : ProductView
+    public function handle(ViewProductCommand $command): ProductView
     {
         $product = $this->productRepository->ofSku(SKU::create($command->getSku()));
 
-        if ($product === null) {
+        if (null === $product) {
             throw new ProductDoesNotExistException("The product with sku {$command->getSku()} does not exist");
         }
 
         $category = $this->categoryRepository->ofId($product->categoryId());
 
-        if ($category === null) {
+        if (null === $category) {
             throw new CategoryDoesNotExistException("The category from the product with sku {$command->getSku()} does not exist");
         }
 

@@ -10,11 +10,9 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class GetStockItemController extends AbstractController
 {
-
     public function __construct(
-        private CommandBus $commandBus
-    )
-    {
+        private CommandBus $commandBus,
+    ) {
     }
 
     #[Route('/inventory/{sku}', name: 'get_stockItem', methods: ['GET'])]

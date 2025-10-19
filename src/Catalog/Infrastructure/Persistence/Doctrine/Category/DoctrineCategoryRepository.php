@@ -9,13 +9,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineCategoryRepository implements CategoryRepository
 {
-
-
     public function __construct(
         private EntityManagerInterface $em,
         private CategoryMapper $mapper,
-    )
-    {
+    ) {
     }
 
     public function nextIdentity(): CategoryId
@@ -29,7 +26,6 @@ class DoctrineCategoryRepository implements CategoryRepository
 
         $this->em->persist($record);
         $this->em->flush();
-
     }
 
     public function remove(Category $category): void

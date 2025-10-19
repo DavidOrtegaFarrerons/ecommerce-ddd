@@ -13,32 +13,30 @@ use App\Shared\Domain\Model\SKU;
 
 readonly class UpdateProductHandler
 {
-
     public function __construct(
-        private ProductRepository  $productRepository,
+        private ProductRepository $productRepository,
         private CategoryRepository $categoryRepository,
-    )
-    {
+    ) {
     }
 
-    public function handle(UpdateProductCommand $command) : void
+    public function handle(UpdateProductCommand $command): void
     {
         $product = $this->productRepository->ofSku(SKU::create($command->getSku()));
 
-        if ($product === null) {
+        if (null === $product) {
             throw new ProductDoesNotExistException("The product with sku {$command->getSku()} doesn't exist");
         }
 
-        if ($command->getName() !== null) {
+        if (null !== $command->getName()) {
             $product->renameTo($command->getName());
         }
 
-        if ($command->getDescription() !== null) {
+        if (null !== $command->getDescription()) {
             $product->changeDescriptionTo($command->getDescription());
         }
 
-        $priceAmount = $command->getPriceAmount() !== null ? $command->getPriceAmount() : $product->price()->amount();
-        $priceCurrency = $command->getPriceCurrency() !== null ? $command->getPriceCurrency() : $product->price()->currency()->isoCode();
+        $priceAmount = null !== $command->getPriceAmount() ? $command->getPriceAmount() : $product->price()->amount();
+        $priceCurrency = null !== $command->getPriceCurrency() ? $command->getPriceCurrency() : $product->price()->currency()->isoCode();
 
         $product->repriceTo(
             Money::create(
@@ -47,10 +45,10 @@ readonly class UpdateProductHandler
             )
         );
 
-        if ($command->getCategoryId() !== null) {
+        if (null !== $command->getCategoryId()) {
             $category = $this->categoryRepository->ofId(CategoryId::create($command->getCategoryId()));
 
-            if ($category === null) {
+            if (null === $category) {
                 throw new CategoryDoesNotExistException("The category with id {$command->getCategoryId()} doesn't exist");
             }
 

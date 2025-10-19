@@ -10,18 +10,16 @@ use App\Identity\Domain\Model\UserRepository;
 
 readonly class RegisterUserHandler
 {
-
     public function __construct(
         private UserRepository $userRepository,
-        private PasswordHasher $passwordHasher
-    )
-    {
+        private PasswordHasher $passwordHasher,
+    ) {
     }
 
     public function handle(RegisterUserCommand $command): void
     {
         $user = $this->userRepository->ofEmail(new Email($command->getEmail()));
-        if ($user !== null) {
+        if (null !== $user) {
             throw new UserAlreadyExistsException();
         }
 
@@ -34,7 +32,6 @@ readonly class RegisterUserHandler
             $command->getLastName(),
             $hashedPassword
         );
-
 
         $this->userRepository->add($user);
     }

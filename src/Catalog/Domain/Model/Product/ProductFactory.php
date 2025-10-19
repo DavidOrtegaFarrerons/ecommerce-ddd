@@ -16,9 +16,8 @@ class ProductFactory
         string $description,
         int $priceAmount,
         string $priceCurrency,
-        string $categoryId
-    ) : Product
-    {
+        string $categoryId,
+    ): Product {
         return Product::create(
             $id,
             SKU::create($sku),

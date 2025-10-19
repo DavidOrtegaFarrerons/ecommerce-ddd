@@ -10,12 +10,6 @@ class RegisterUserCommand
 
     private string $password;
 
-    /**
-     * @param string $email
-     * @param string $firstName
-     * @param string $lastName
-     * @param string $password
-     */
     public function __construct(string $email, string $firstName, string $lastName, string $password)
     {
         $this->email = $email;

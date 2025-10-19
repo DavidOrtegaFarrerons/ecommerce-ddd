@@ -8,18 +8,16 @@ use App\Shared\Domain\Model\SKU;
 
 class PublishProductHandler
 {
-
     public function __construct(
-        private readonly ProductRepository $productRepository
-    )
-    {
+        private readonly ProductRepository $productRepository,
+    ) {
     }
 
-    public function handle(PublishProductCommand $command) : void
+    public function handle(PublishProductCommand $command): void
     {
         $product = $this->productRepository->ofSku(SKU::create($command->getSku()));
 
-        if ($product === null) {
+        if (null === $product) {
             throw new ProductDoesNotExistException("The product with sku {$command->getSku()} doesn't exist");
         }
 

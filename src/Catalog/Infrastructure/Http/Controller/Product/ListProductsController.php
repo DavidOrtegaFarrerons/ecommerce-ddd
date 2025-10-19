@@ -11,13 +11,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ListProductsController extends AbstractController
 {
-
     public function __construct(private CommandBus $commandBus)
     {
     }
 
     #[Route('/products', name: 'list_products', methods: ['GET'])]
-    public function list(Request $request) : JsonResponse
+    public function list(Request $request): JsonResponse
     {
         return $this->commandBus->handle(new ListProductsCommand(
             $request->get('sku'),

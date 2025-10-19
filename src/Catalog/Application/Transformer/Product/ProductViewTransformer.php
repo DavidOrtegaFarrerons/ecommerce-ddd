@@ -7,7 +7,7 @@ use App\Catalog\Domain\Model\Product\Product;
 
 class ProductViewTransformer
 {
-    public function assembleFrom(Product $product, string $categoryName) : ProductView
+    public function assembleFrom(Product $product, string $categoryName): ProductView
     {
         return new ProductView(
             $product->sku()->value(),

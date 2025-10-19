@@ -6,7 +6,6 @@ use App\Identity\Domain\Model\Email;
 use App\Identity\Domain\Model\User;
 use App\Identity\Domain\Model\UserId;
 use App\Identity\Domain\Model\UserRepository;
-use Symfony\Component\Uid\Uuid;
 
 class InMemoryUserRepository implements UserRepository
 {
@@ -20,17 +19,17 @@ class InMemoryUserRepository implements UserRepository
         return UserId::create();
     }
 
-    public function add(User $user) : void
+    public function add(User $user): void
     {
         $this->users[$user->id()->id()] = $user;
     }
 
-    public function remove(User $user) : void
+    public function remove(User $user): void
     {
         unset($this->users[$user->id()->id()]);
     }
 
-    public function ofId(UserId $userId) : ?User
+    public function ofId(UserId $userId): ?User
     {
         if (isset($this->users[$userId->id()])) {
             return $this->users[$userId->id()];
@@ -39,7 +38,7 @@ class InMemoryUserRepository implements UserRepository
         return null;
     }
 
-    public function ofEmail(Email $email) : ?User
+    public function ofEmail(Email $email): ?User
     {
         foreach ($this->users as $user) {
             if ($user->email()->equals($email)) {

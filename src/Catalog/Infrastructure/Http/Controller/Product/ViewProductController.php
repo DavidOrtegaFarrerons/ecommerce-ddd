@@ -10,17 +10,16 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ViewProductController extends AbstractController
 {
-
     public function __construct(private CommandBus $commandBus)
     {
     }
 
-    #[Route("/products/{sku}", name: "get_product", methods: ["GET"])]
-    public function get(string $sku) : JsonResponse
+    #[Route('/products/{sku}', name: 'get_product', methods: ['GET'])]
+    public function get(string $sku): JsonResponse
     {
         $sku = trim($sku);
 
-        if ($sku === '') {
+        if ('' === $sku) {
             return $this->json([
                 'success' => false,
                 'message' => 'SKU can not be empty.',

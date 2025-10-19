@@ -10,7 +10,6 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 #[AsEventListener]
 class CreateStockItemWhenProductCreated
 {
-
     public function __construct(private CommandBus $commandBus)
     {
     }

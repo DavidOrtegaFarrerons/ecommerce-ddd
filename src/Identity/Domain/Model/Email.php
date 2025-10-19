@@ -8,14 +8,11 @@ class Email
 {
     private string $value;
 
-    /**
-     * @param string $value
-     */
     public function __construct(string $value)
     {
         $normalizedValue = strtolower(trim($value));
         if (!$this->validate($normalizedValue)) {
-            throw new InvalidEmailException($normalizedValue . " is not a valid email");
+            throw new InvalidEmailException($normalizedValue.' is not a valid email');
         }
         $this->value = $normalizedValue;
     }
@@ -30,12 +27,12 @@ class Email
         return $this->value;
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->value;
     }
 
-    private function validate(string $email) : bool
+    private function validate(string $email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }

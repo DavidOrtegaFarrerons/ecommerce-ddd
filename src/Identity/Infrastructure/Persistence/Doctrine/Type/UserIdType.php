@@ -8,7 +8,6 @@ use Doctrine\DBAL\Types\Type;
 
 class UserIdType extends Type
 {
-
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return $platform->getGuidTypeDeclarationSQL($column);
@@ -19,10 +18,10 @@ class UserIdType extends Type
         return UserId::create($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform) : string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         if (!$value instanceof UserId) {
-            throw new \InvalidArgumentException("Expected instance of UserId, got " . gettype($value));
+            throw new \InvalidArgumentException('Expected instance of UserId, got '.gettype($value));
         }
 
         return (string) $value;

@@ -17,31 +17,31 @@ class SKU
         $this->value = $normalized;
     }
 
-    private static function fake() : SKU
+    private static function fake(): SKU
     {
-        return new SKU('SKU-' . bin2hex(random_bytes(8)));
+        return new SKU('SKU-'.bin2hex(random_bytes(8)));
     }
 
-    public static function create(?string $value = null) : SKU
+    public static function create(?string $value = null): SKU
     {
-        if ($value === null || $value === '') {
+        if (null === $value || '' === $value) {
             return self::fake();
         }
 
         return new self($value);
     }
 
-    public function equalsTo(SKU $sku) : bool
+    public function equalsTo(SKU $sku): bool
     {
         return $this->value === $sku->value;
     }
 
-    public function value() : string
+    public function value(): string
     {
         return $this->value;
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->value;
     }

@@ -12,15 +12,14 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ProductMapper
 {
-
     public function __construct(private EntityManagerInterface $em)
     {
     }
 
-    public function toRecord(Product $product) : ProductRecord
+    public function toRecord(Product $product): ProductRecord
     {
         $r = $this->em->find(ProductRecord::class, $product->id()->id());
-        if ($r === null) {
+        if (null === $r) {
             $r = new ProductRecord();
             $r->id = $product->id()->id();
         }

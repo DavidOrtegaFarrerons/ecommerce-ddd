@@ -6,19 +6,17 @@ class StockQuantity
 {
     private int $value;
 
-    /**
-     * @param int $value
-     */
     private function __construct(int $value)
     {
         if ($value < 0) {
-            throw new InvalidQuantityException("Quantity must be a positive number");
+            throw new InvalidQuantityException('Quantity must be a positive number');
         }
 
         $this->value = $value;
     }
 
-    public static function create(int $value): self {
+    public static function create(int $value): self
+    {
         return new StockQuantity($value);
     }
 

@@ -12,24 +12,22 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UpdateProductController extends AbstractController
 {
-
     public function __construct(
         private readonly CommandBus $commandBus,
-    )
-    {
+    ) {
     }
 
     #[Route('/products/{sku}', name: 'update_product', methods: ['PATCH'])]
-    #[IsGranted("ROLE_ADMIN")]
-    public function update(Request $request, string $sku) : JsonResponse
+    #[IsGranted('ROLE_ADMIN')]
+    public function update(Request $request, string $sku): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
-        if ($data === null) {
+        if (null === $data) {
             return new JsonResponse(
                 [
                     'success' => false,
-                    'message' => 'No fields sent for update'
+                    'message' => 'No fields sent for update',
                 ],
                 400
             );
@@ -48,7 +46,7 @@ class UpdateProductController extends AbstractController
 
         return $this->json(
             [
-            'success' => true,
+                'success' => true,
             ]
         );
     }

@@ -11,20 +11,19 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class PublishProductController extends AbstractController
 {
-
     public function __construct(private readonly CommandBus $commandBus)
     {
     }
 
     #[Route('/products/{sku}/publish', name: 'publish_product', methods: ['PATCH'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function publish(string $sku) : JsonResponse
+    public function publish(string $sku): JsonResponse
     {
-        if ($sku === null) {
+        if (null === $sku) {
             return $this->json(
                 [
                     'success' => false,
-                    'message' => 'no SKU has been given'
+                    'message' => 'no SKU has been given',
                 ]
             );
         }
@@ -33,7 +32,7 @@ class PublishProductController extends AbstractController
         return $this->json(
             [
                 'success' => true,
-                'published' => true
+                'published' => true,
             ]
         );
     }

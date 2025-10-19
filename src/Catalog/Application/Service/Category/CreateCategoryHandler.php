@@ -8,20 +8,18 @@ use App\Catalog\Domain\Model\Category\CategoryRepository;
 
 class CreateCategoryHandler
 {
-
     public function __construct(
         private CategoryRepository $categoryRepository,
         private CategoryFactory $categoryFactory,
-    )
-    {
+    ) {
     }
 
-    public function handle(CreateCategoryCommand $command) : void
+    public function handle(CreateCategoryCommand $command): void
     {
         $category = $this->categoryRepository->ofName($command->getName());
 
-        if ($category !== null) {
-            throw new CategoryAlreadyExistsException('A category with the name '. $command->getName() .' already exists');
+        if (null !== $category) {
+            throw new CategoryAlreadyExistsException('A category with the name '.$command->getName().' already exists');
         }
 
         $category = $this->categoryFactory->create(

@@ -14,11 +14,11 @@ class CreateStockItemHandler
     {
     }
 
-    public function handle(CreateStockItemCommand $command) : void
+    public function handle(CreateStockItemCommand $command): void
     {
         $sku = SKU::create($command->getSku());
         $stockItem = $this->repository->ofSku($sku);
-        if ($stockItem !== null) {
+        if (null !== $stockItem) {
             throw new StockItemAlreadyExistsException("A StockItem with the sku {$sku->value()} already exists.");
         }
 

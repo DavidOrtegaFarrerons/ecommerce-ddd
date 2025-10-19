@@ -38,6 +38,9 @@ services:
     App\Catalog\Domain\Model\Product\ProductRepository:
         alias: App\Catalog\Infrastructure\Persistence\Doctrine\Product\DoctrineProductRepository
 
+    App\Inventory\Domain\Model\StockItemRepository:
+        alias: App\Inventory\Infrastructure\Persistence\Doctrine\DoctrineStockItemRepository
+
     App\Inventory\Application\Service\:
         resource: '../src/Inventory/Application/Service/*Handler.php'
         tags: [ { name: tactician.handler, typehints: true } ]
