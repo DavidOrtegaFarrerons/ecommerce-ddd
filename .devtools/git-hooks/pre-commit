@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+echo "Run tests..."
+docker compose exec -T php php bin/phpunit
+
+echo "Run code style fixer..."
+docker compose exec -T php ./vendor/bin/php-cs-fixer fix src
