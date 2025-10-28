@@ -20,6 +20,7 @@ interface ProductRepository
 
     /**
      * @param SKU[] $skus
+     *
      * @return Product[]|null
      */
     public function ofSkus(array $skus): ?array;

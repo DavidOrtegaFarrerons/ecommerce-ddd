@@ -14,13 +14,12 @@ class SetShippingAddressController extends AbstractController
 {
     public function __construct(
         private AuthenticatedUserProvider $authenticatedUserProvider,
-        private CommandBus $commandBus
-    )
-    {
+        private CommandBus $commandBus,
+    ) {
     }
 
     #[Route('/checkout/shipping-address', name: 'cart_checkout_shipping-address', methods: ['PATCH'])]
-    public function setShippingAddres(Request $request) : JsonResponse
+    public function setShippingAddres(Request $request): JsonResponse
     {
         $user = $this->authenticatedUserProvider->requireAuthenticatedUser();
 
@@ -34,7 +33,7 @@ class SetShippingAddressController extends AbstractController
         )) {
             return $this->json([
                 'success' => false,
-                'message' => 'Street, city, zip and country are required fields'
+                'message' => 'Street, city, zip and country are required fields',
             ]);
         }
 

@@ -9,10 +9,6 @@ class CartItem
     private SKU $sku;
     private int $quantity;
 
-    /**
-     * @param SKU $sku
-     * @param int $quantity
-     */
     public function __construct(SKU $sku, int $quantity)
     {
         $this->sku = $sku;
@@ -24,12 +20,12 @@ class CartItem
         $this->quantity = $quantity;
     }
 
-    public function sku() : SKU
+    public function sku(): SKU
     {
         return $this->sku;
     }
 
-    public function quantity() : int
+    public function quantity(): int
     {
         return $this->quantity;
     }
@@ -37,11 +33,9 @@ class CartItem
     private function setQuantity(int $quantity): void
     {
         if ($quantity <= 0) {
-            throw new InvalidCartItemQuantityException("The quantity for a cart item can not be equal or less than zero.");
+            throw new InvalidCartItemQuantityException('The quantity for a cart item can not be equal or less than zero.');
         }
 
         $this->quantity = $quantity;
     }
-
-
 }

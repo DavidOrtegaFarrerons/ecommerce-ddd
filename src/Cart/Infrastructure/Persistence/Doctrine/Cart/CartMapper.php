@@ -4,8 +4,6 @@ namespace App\Cart\Infrastructure\Persistence\Doctrine\Cart;
 
 use App\Cart\Domain\Model\Cart\Cart;
 use App\Cart\Domain\Model\Cart\CartId;
-use App\Cart\Domain\Model\Cart\CartRepository;
-use App\Cart\Domain\Model\CartItem\CartItem;
 use App\Cart\Infrastructure\Persistence\Doctrine\CartItem\CartItemMapper;
 use App\Cart\Infrastructure\Persistence\Doctrine\CartItem\CartItemRecord;
 use App\Identity\Domain\Model\UserId;
@@ -15,22 +13,19 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CartMapper
 {
-
     public function __construct(
         private EntityManagerInterface $em,
         private CartItemMapper $itemMapper,
-
-    )
-    {
+    ) {
     }
 
-    public function toRecord(Cart $cart) : CartRecord
+    public function toRecord(Cart $cart): CartRecord
     {
         $record = $this->em->getRepository(CartRecord::class)->findOneBy([
             'userId' => $cart->userId()->id(),
         ]);
 
-        if ($record === null) {
+        if (null === $record) {
             $record = new CartRecord();
             $record->id = $cart->id()->id();
             $record->userId = $cart->userId()->id();

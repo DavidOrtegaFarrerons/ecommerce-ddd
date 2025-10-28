@@ -19,10 +19,7 @@ class Cart
     private ?Address $shippingAddress = null;
 
     /**
-     * @param CartId $id
-     * @param UserId $userId
      * @param CartItem[] $items
-     * @param Address|null $shippingAddress
      */
     public function __construct(CartId $id, UserId $userId, array $items, ?Address $shippingAddress = null)
     {
@@ -32,12 +29,12 @@ class Cart
         $this->shippingAddress = $shippingAddress;
     }
 
-
     public function addItem(CartItem $newItem): void
     {
         foreach ($this->items as $item) {
             if ($newItem->sku()->equalsTo($item->sku())) {
                 $item->changeQuantityTo($item->quantity());
+
                 return;
             }
         }
@@ -50,6 +47,7 @@ class Cart
         foreach ($this->items as $key => $item) {
             if ($itemToRemove->equalsTo($item->sku())) {
                 unset($this->items[$key]);
+
                 return;
             }
         }
@@ -69,25 +67,23 @@ class Cart
         $this->shippingAddress = $newAddress;
     }
 
-    public function id() : CartId
+    public function id(): CartId
     {
         return $this->id;
     }
 
-    public function userId() : UserId
+    public function userId(): UserId
     {
         return $this->userId;
     }
 
-    public function items() : array
+    public function items(): array
     {
         return $this->items;
     }
 
-    public function shippingAddress() : ?Address
+    public function shippingAddress(): ?Address
     {
         return $this->shippingAddress;
     }
-
-
 }

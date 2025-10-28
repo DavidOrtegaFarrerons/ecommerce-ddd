@@ -8,12 +8,10 @@ use App\Shared\Domain\Model\Address;
 
 class SetShippingAddressHandler
 {
-
     public function __construct(
         private CartFinder $cartFinder,
-        private CartRepository $repository
-    )
-    {
+        private CartRepository $repository,
+    ) {
     }
 
     public function handle(SetShippingAddressCommand $command): void

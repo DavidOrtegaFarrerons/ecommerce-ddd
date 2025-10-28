@@ -12,13 +12,14 @@ use App\Shared\Domain\Model\Money;
 class CartTotalCalculator
 {
     public function __construct(
-        private ViewProductsHandler $viewProductsHandler
-    ) {}
+        private ViewProductsHandler $viewProductsHandler,
+    ) {
+    }
 
-    public function calculate(Cart $cart) : Money
+    public function calculate(Cart $cart): Money
     {
         $skus = array_map(
-            fn(CartItem $item) => $item->sku()->value(),
+            fn (CartItem $item) => $item->sku()->value(),
             $cart->items()
         );
 
@@ -29,7 +30,9 @@ class CartTotalCalculator
         foreach ($cart->items() as $item) {
             $sku = $item->sku()->value();
             $product = $productViews[$sku] ?? null;
-            if (!$product) continue;
+            if (!$product) {
+                continue;
+            }
 
             $price = Money::create($product->getPrice(), Currency::create($product->getCurrency()));
             $total = $total->add($price->multiply($item->quantity()));

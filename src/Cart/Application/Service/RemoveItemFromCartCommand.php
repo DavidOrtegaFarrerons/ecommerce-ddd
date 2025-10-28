@@ -7,10 +7,6 @@ class RemoveItemFromCartCommand
     private string $userId;
     private string $sku;
 
-    /**
-     * @param string $userId
-     * @param string $sku
-     */
     public function __construct(string $userId, string $sku)
     {
         $this->userId = $userId;

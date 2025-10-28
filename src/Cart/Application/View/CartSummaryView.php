@@ -15,9 +15,7 @@ class CartSummaryView
     private Money $total;
 
     /**
-     * @param Address $shippingAddress
      * @param CartItemView[] $cartItemsViews
-     * @param Money $total
      */
     public function __construct(Address $shippingAddress, array $cartItemsViews, Money $total)
     {

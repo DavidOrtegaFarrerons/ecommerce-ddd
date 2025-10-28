@@ -2,7 +2,6 @@
 
 namespace App\Shared\Domain\Model;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Embeddable]
@@ -24,7 +23,7 @@ class Address
         string $street,
         string $city,
         string $postalCode,
-        string $country
+        string $country,
     ) {
         $this->street = $street;
         $this->city = $city;

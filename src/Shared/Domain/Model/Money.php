@@ -34,6 +34,7 @@ class Money
     public function add(Money $other): Money
     {
         $this->assertSameCurrency($other);
+
         return new Money($this->amount + $other->amount, $this->currency);
     }
 
@@ -61,7 +62,6 @@ class Money
 
     public function formatted(): string
     {
-        return number_format($this->amount / 100, 2, '.', '') . ' ' . $this->currency->isoCode();
+        return number_format($this->amount / 100, 2, '.', '').' '.$this->currency->isoCode();
     }
-
 }

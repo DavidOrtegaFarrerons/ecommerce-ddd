@@ -4,9 +4,7 @@ namespace App\Catalog\Application\Service\Product;
 
 use App\Catalog\Application\Transformer\Product\ProductViewTransformer;
 use App\Catalog\Application\View\ProductView;
-use App\Catalog\Domain\Model\Category\CategoryDoesNotExistException;
 use App\Catalog\Domain\Model\Category\CategoryRepository;
-use App\Catalog\Domain\Model\Product\ProductDoesNotExistException;
 use App\Catalog\Domain\Model\Product\ProductRepository;
 use App\Shared\Domain\Model\SKU;
 
@@ -20,7 +18,6 @@ class ViewProductsHandler
     }
 
     /**
-     * @param ViewProductsCommand $command
      * @return ProductView[]
      */
     public function handle(ViewProductsCommand $command): array
@@ -36,7 +33,7 @@ class ViewProductsHandler
             $categoryId = $product->categoryId()->id();
             if (!isset($categoryNames[$categoryId])) {
                 $category = $this->categoryRepository->ofId($product->categoryId());
-                if ($category === null || $category->name() === '') {
+                if (null === $category || '' === $category->name()) {
                     continue;
                 }
 

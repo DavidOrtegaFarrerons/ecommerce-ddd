@@ -9,7 +9,6 @@ use App\Identity\Domain\Model\UserId;
 
 class CartFinder
 {
-
     public function __construct(private CartRepository $repository)
     {
     }
@@ -17,7 +16,7 @@ class CartFinder
     public function findOrFail(UserId $userId): Cart
     {
         $cart = $this->repository->ofUserId($userId);
-        if ($cart === null) {
+        if (null === $cart) {
             throw new CartNotFoundException("No cart was found for userId: {$userId->id()}");
         }
 

@@ -28,7 +28,7 @@ class CartItemViewTransformer
         }
 
         $skus = array_map(
-            fn(CartItem $item) => $item->sku()->value(),
+            fn (CartItem $item) => $item->sku()->value(),
             $cartItems
         );
 
@@ -42,7 +42,7 @@ class CartItemViewTransformer
             $sku = $cartItem->sku()->value();
             $productView = $productViews[$sku] ?? null;
 
-            if ($productView === null) {
+            if (null === $productView) {
                 continue;
             }
 

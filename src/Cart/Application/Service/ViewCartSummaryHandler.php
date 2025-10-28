@@ -9,18 +9,15 @@ use App\Identity\Domain\Model\UserId;
 
 class ViewCartSummaryHandler
 {
-
-    public function __construct
-    (
+    public function __construct(
         private CartFinder $cartFinder,
-         private CartRepository $repository,
-         private CartItemViewTransformer $transformer,
+        private CartRepository $repository,
+        private CartItemViewTransformer $transformer,
         private CartTotalCalculator $calculator,
-    )
-    {
+    ) {
     }
 
-    public function handle(ViewCartSummaryCommand $command) : CartSummaryView
+    public function handle(ViewCartSummaryCommand $command): CartSummaryView
     {
         $userId = UserId::create($command->getUserId());
         $cart = $this->cartFinder->findOrFail($userId);

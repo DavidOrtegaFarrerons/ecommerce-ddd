@@ -82,7 +82,7 @@ class DoctrineProductRepository implements ProductRepository
         }
 
         return array_map(
-            fn(ProductRecord $record) => $this->mapper->toDomain($record),
+            fn (ProductRecord $record) => $this->mapper->toDomain($record),
             $records
         );
     }

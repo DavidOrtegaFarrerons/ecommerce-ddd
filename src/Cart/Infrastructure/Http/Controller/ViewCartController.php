@@ -11,13 +11,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ViewCartController extends AbstractController
 {
-
     public function __construct(
         private AuthenticatedUserProvider $authenticatedUserProvider,
         private CommandBus $commandBus,
-        private SerializerInterface $serializer
-    )
-    {
+        private SerializerInterface $serializer,
+    ) {
     }
 
     #[Route('/cart', name: 'view_cart', methods: ['GET'])]
@@ -29,7 +27,7 @@ class ViewCartController extends AbstractController
             $user->id()->id()
         ));
 
-        //TODO Money into MoneyView so that the view can be directly json encoded
+        // TODO Money into MoneyView so that the view can be directly json encoded
         $data = array_map(static function ($item) {
             return [
                 'sku' => $item->getSku(),

@@ -6,9 +6,6 @@ class ViewCartSummaryCommand
 {
     private string $userId;
 
-    /**
-     * @param string $userId
-     */
     public function __construct(string $userId)
     {
         $this->userId = $userId;

@@ -8,11 +8,6 @@ class UpdateCartItemQuantityCommand
     private string $sku;
     private int $quantity;
 
-    /**
-     * @param string $userId
-     * @param string $sku
-     * @param int $quantity
-     */
     public function __construct(string $userId, string $sku, int $quantity)
     {
         $this->userId = $userId;

@@ -2,19 +2,16 @@
 
 namespace App\Cart\Application\Service;
 
-use App\Cart\Domain\Model\Cart\CartNotFoundException;
 use App\Cart\Domain\Model\Cart\CartRepository;
 use App\Identity\Domain\Model\UserId;
 use App\Shared\Domain\Model\SKU;
 
 class RemoveItemFromCartHandler
 {
-
     public function __construct(
         private CartFinder $cartFinder,
-        private CartRepository $repository
-    )
-    {
+        private CartRepository $repository,
+    ) {
     }
 
     public function handle(RemoveItemFromCartCommand $command)

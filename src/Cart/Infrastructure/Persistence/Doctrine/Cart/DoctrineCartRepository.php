@@ -10,13 +10,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineCartRepository implements CartRepository
 {
-
-
     public function __construct(
         private EntityManagerInterface $em,
-        private CartMapper $mapper
-    )
-    {
+        private CartMapper $mapper,
+    ) {
     }
 
     public function nextIdentity(): CartId
@@ -44,6 +41,6 @@ class DoctrineCartRepository implements CartRepository
             'userId' => $userId->id(),
         ]);
 
-        return $cart !== null ? $this->mapper->toDomain($cart) : null;
+        return null !== $cart ? $this->mapper->toDomain($cart) : null;
     }
 }

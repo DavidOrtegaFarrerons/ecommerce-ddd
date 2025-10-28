@@ -2,7 +2,6 @@
 
 namespace App\Cart\Infrastructure\Persistence\Doctrine\CartItem;
 
-use App\Cart\Domain\Model\Cart\Cart;
 use App\Cart\Domain\Model\CartItem\CartItem;
 use App\Cart\Infrastructure\Persistence\Doctrine\Cart\CartRecord;
 use App\Shared\Domain\Model\SKU;
@@ -11,20 +10,18 @@ use Symfony\Component\Uid\Uuid;
 
 class CartItemMapper
 {
-
-
     public function __construct(private EntityManagerInterface $em)
     {
     }
 
-    public function toRecord(CartRecord $cartRecord, CartItem $cartItem) : CartItemRecord
+    public function toRecord(CartRecord $cartRecord, CartItem $cartItem): CartItemRecord
     {
         $record = $this->em->getRepository(CartItemRecord::class)->findOneBy([
             'cart' => $cartRecord,
-            'sku' => $cartItem->sku()->value()
+            'sku' => $cartItem->sku()->value(),
         ]);
 
-        if ($record === null) {
+        if (null === $record) {
             $record = new CartItemRecord();
             $record->id = Uuid::v4()->toString();
             $record->cart = $cartRecord;

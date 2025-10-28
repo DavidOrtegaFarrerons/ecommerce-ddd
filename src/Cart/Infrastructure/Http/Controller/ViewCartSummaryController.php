@@ -12,12 +12,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ViewCartSummaryController extends AbstractController
 {
-
     public function __construct(
         private AuthenticatedUserProvider $authenticatedUserProvider,
         private CommandBus $commandBus,
-    )
-    {
+    ) {
     }
 
     #[Route('/checkout/review', name: 'cart_review', methods: ['GET'])]
@@ -36,7 +34,7 @@ class ViewCartSummaryController extends AbstractController
                 'postalCode' => $view->getShippingAddress()->postalCode(),
                 'country' => $view->getShippingAddress()->country(),
             ],
-            'items' => array_map(fn(CartItemView $item) => [
+            'items' => array_map(fn (CartItemView $item) => [
                 'sku' => $item->getSku(),
                 'name' => $item->getName(),
                 'description' => $item->getDescription(),
@@ -54,6 +52,5 @@ class ViewCartSummaryController extends AbstractController
                 'formatted' => $view->getTotal()->formatted(),
             ],
         ]);
-
     }
 }

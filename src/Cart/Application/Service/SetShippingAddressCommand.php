@@ -10,13 +10,6 @@ class SetShippingAddressCommand
     private string $postalCode;
     private string $country;
 
-    /**
-     * @param string $userId
-     * @param string $street
-     * @param string $city
-     * @param string $postalCode
-     * @param string $country
-     */
     public function __construct(string $userId, string $street, string $city, string $postalCode, string $country)
     {
         $this->userId = $userId;
