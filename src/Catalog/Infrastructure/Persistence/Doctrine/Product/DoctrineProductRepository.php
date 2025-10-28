@@ -61,4 +61,29 @@ class DoctrineProductRepository implements ProductRepository
     {
         return [];
     }
+
+    public function ofSkus(array $skus): ?array
+    {
+        if (empty($skus)) {
+            return [];
+        }
+
+        $qb = $this->em->createQueryBuilder();
+        $qb
+            ->select('p')
+            ->from(ProductRecord::class, 'p')
+            ->where($qb->expr()->in('p.sku', ':skus'))
+            ->setParameter('skus', $skus);
+
+        $records = $qb->getQuery()->getResult();
+
+        if (!$records) {
+            return [];
+        }
+
+        return array_map(
+            fn(ProductRecord $record) => $this->mapper->toDomain($record),
+            $records
+        );
+    }
 }

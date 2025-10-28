@@ -64,4 +64,16 @@ class InMemoryProductRepository implements ProductRepository
     {
         return [];
     }
+
+    public function ofSkus(array $skus): ?array
+    {
+        $products = [];
+        foreach ($this->products as $product) {
+            if (in_array($product->sku()->value(), $skus)) {
+                $products[] = $product;
+            }
+        }
+
+        return $products;
+    }
 }

@@ -18,5 +18,11 @@ interface ProductRepository
 
     public function ofSku(SKU $sku): ?Product;
 
+    /**
+     * @param SKU[] $skus
+     * @return Product[]|null
+     */
+    public function ofSkus(array $skus): ?array;
+
     public function findByFilters(SKU $sku, string $name, int $price, string $categoryName): array;
 }

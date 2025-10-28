@@ -15,3 +15,9 @@ inventory_controllers:
         path: ../src/Inventory/Infrastructure/Http/Controller/
         namespace: App\Inventory\Infrastructure\Http\Controller
     type: attribute
+
+cart_controllers:
+    resource:
+        path: ../src/Cart/Infrastructure/Http/Controller/
+        namespace: App\Cart\Infrastructure\Http\Controller
+    type: attribute

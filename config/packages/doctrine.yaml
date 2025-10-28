@@ -21,6 +21,13 @@ doctrine:
             Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
         auto_mapping: true
         mappings:
+            Shared:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Shared/Domain/Model'
+                prefix: 'App\Shared\Domain\Model'
+                alias: Shared
+
             Identity:
                 type: attribute
                 is_bundle: false
@@ -33,14 +40,21 @@ doctrine:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Catalog/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Catalog\Infrastructure\Persistence\Doctrine'
-                alias: Identity
+                alias: Catalog
 
             Inventory:
                 type: attribute
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Inventory/Infrastructure/Persistence/Doctrine'
                 prefix: 'App\Inventory\Infrastructure\Persistence\Doctrine'
-                alias: Identity
+                alias: Inventory
+
+            Cart:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Cart/Infrastructure/Persistence/Doctrine'
+                prefix: 'App\Cart\Infrastructure\Persistence\Doctrine'
+                alias: Cart
         controller_resolver:
             auto_mapping: false
 

@@ -45,5 +45,10 @@ services:
         resource: '../src/Inventory/Application/Service/*Handler.php'
         tags: [ { name: tactician.handler, typehints: true } ]
 
+
+    App\Cart\Application\Service\:
+        resource: '../src/Cart/Application/Service/**/*Handler.php'
+        tags: [ { name: tactician.handler, typehints: true } ]
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
